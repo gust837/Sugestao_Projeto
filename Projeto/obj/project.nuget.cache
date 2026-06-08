@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "Ao/N8ZTCg8g=",
   "success": true,
   "projectFilePath": "C:\\Users\\54568203821\\Desktop\\atividades\\Sugestao_Projeto\\Projeto\\Projeto.csproj",
@@ -48,5 +49,11 @@
     "C:\\Users\\54568203821\\.nuget\\packages\\system.security.cryptography.pkcs\\9.0.4\\system.security.cryptography.pkcs.9.0.4.nupkg.sha512",
     "C:\\Users\\54568203821\\.nuget\\packages\\system.security.cryptography.protecteddata\\9.0.4\\system.security.cryptography.protecteddata.9.0.4.nupkg.sha512"
   ],
+=======
+  "dgSpecHash": "VQyAweVp94g=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\52663088854\\Documents\\Sugestao_Projeto\\Projeto\\Projeto.csproj",
+  "expectedPackageFiles": [],
+>>>>>>> ccb70326a4bcaf52233559465931e5ff80439337
   "logs": []
 }

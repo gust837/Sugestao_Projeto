@@ -1,0 +1,9 @@
+C:\Users\52663088854\Documents\Sugestao_Projeto\projeto\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\Users\52663088854\Documents\Sugestao_Projeto\projeto\obj\Debug\net10.0\Projeto.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\52663088854\Documents\Sugestao_Projeto\projeto\obj\Debug\net10.0\Projeto.AssemblyInfoInputs.cache
+C:\Users\52663088854\Documents\Sugestao_Projeto\projeto\obj\Debug\net10.0\Projeto.AssemblyInfo.cs
+C:\Users\52663088854\Documents\Sugestao_Projeto\projeto\obj\Debug\net10.0\Projeto.csproj.CoreCompileInputs.cache
+C:\Users\52663088854\Documents\Sugestao_Projeto\projeto\obj\Debug\net10.0\Projeto.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\52663088854\Documents\Sugestao_Projeto\projeto\obj\Debug\net10.0\Projeto.RazorAssemblyInfo.cache
+C:\Users\52663088854\Documents\Sugestao_Projeto\projeto\obj\Debug\net10.0\Projeto.RazorAssemblyInfo.cs
+C:\Users\52663088854\Documents\Sugestao_Projeto\projeto\obj\Debug\net10.0\Projeto.sourcelink.json

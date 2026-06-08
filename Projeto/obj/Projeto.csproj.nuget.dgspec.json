@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\54568203821\\Desktop\\atividades\\Sugestao_Projeto\\Projeto\\Projeto.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "C:\\Users\\54568203821\\Desktop\\atividades\\Sugestao_Projeto\\Projeto\\Projeto.csproj",
         "packagesPath": "C:\\Users\\54568203821\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\54568203821\\Desktop\\atividades\\Sugestao_Projeto\\Projeto\\obj\\",
+=======
+    "C:\\Users\\52663088854\\Documents\\Sugestao_Projeto\\Projeto\\Projeto.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\52663088854\\Documents\\Sugestao_Projeto\\Projeto\\Projeto.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\52663088854\\Documents\\Sugestao_Projeto\\Projeto\\Projeto.csproj",
+        "projectName": "Projeto",
+        "projectPath": "C:\\Users\\52663088854\\Documents\\Sugestao_Projeto\\Projeto\\Projeto.csproj",
+        "packagesPath": "C:\\Users\\52663088854\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\52663088854\\Documents\\Sugestao_Projeto\\Projeto\\obj\\",
+>>>>>>> ccb70326a4bcaf52233559465931e5ff80439337
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
