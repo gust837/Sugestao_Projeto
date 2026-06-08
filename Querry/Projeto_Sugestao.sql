@@ -22,6 +22,8 @@ CREATE TABLE Sugestao(
 	DataStatus DATE NOT NULL,
 	DataSugestao DATE NOT NULL,
 	Imagem VARCHAR(MAX),
+	Localizacao CHAR(1) NOT NULL
+		CHECK (Localizacao IN ('T', '1', '2', 'C', 'R')), -- T = Térreo, 1 = 1ºAndar, 2 = 2ºAndar, C = Coworking, R = Refeitorio
 
 	UsuarioId INT NOT NULL FOREIGN KEY(UsuarioId)
 	REFERENCES Usuario(Id) 
@@ -79,11 +81,38 @@ INSERT INTO Categoria (Nome) VALUES
 ('Tecnologia');
 GO
 
--- 3. Populando a tabela Sugestao (Relacionada com Usuario)
-INSERT INTO Sugestao (Nome, Descricao, StatusSugestao, DataStatus, DataSugestao, Imagem, UsuarioId) VALUES
-('Melhoria no Wi-Fi', 'Instalar novos roteadores no refeitório.', 'A', '2026-06-01', '2026-06-01', '', 2), -- Postado por Bruno (Em Andamento)
-('Coleta Seletiva', 'Implantar lixeiras de reciclagem nas salas.', 'E', '2026-06-02', '2026-06-02', '', 3),                     -- Postado por Carlos (Em Espera)
-('Ar-condicionado', 'Manutenção preventiva dos aparelhos do bloco B.', 'F', '2026-06-05', '2026-05-20', '', 2); -- Postado por Bruno (Finalizado)
+-- 3. Populando a tabela Sugestao (Relacionada com Usuario e com Nova Coluna Localizacao)
+INSERT INTO Sugestao (Nome, Descricao, StatusSugestao, DataStatus, DataSugestao, Imagem, Localizacao, UsuarioId) VALUES
+(
+    'Melhoria no Wi-Fi', 
+    'Instalar novos roteadores no refeitório.', 
+    'A', 
+    '2026-06-01', 
+    '2026-06-01', 
+    '', 
+    'R', -- R = Refeitório (conforme a descrição)
+    2
+), 
+(
+    'Coleta Seletiva', 
+    'Implantar lixeiras de reciclagem nas salas.', 
+    'E', 
+    '2026-06-02', 
+    '2026-06-02', 
+    '', 
+    '1', -- 1 = 1º Andar
+    3
+), 
+(
+    'Ar-condicionado', 
+    'Manutenção preventiva dos aparelhos do bloco B.', 
+    'F', 
+    '2026-06-05', 
+    '2026-05-20', 
+    '', 
+    'T', -- T = Térreo
+    2
+);
 GO
 
 -- 4. Populando a tabela Comentario (Relacionada com Usuario e Sugestao)
@@ -107,3 +136,4 @@ INSERT INTO Sugestao_Categoria (SugestaoId, CategoriaId) VALUES
 (3, 1); -- 'Ar-condicionado' associada a 'Infraestrutura'
 GO
 
+SELECT * FROM Sugestao
