@@ -8,7 +8,6 @@ using Microsoft.Extensions.Logging;
 
 namespace Projeto.Controllers
 {
-    [Route("[controller]")]
     public class UsuarioController : Controller
     {
         private readonly ILogger<UsuarioController> _logger;

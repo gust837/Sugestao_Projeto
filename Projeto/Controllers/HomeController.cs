@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Projeto.Models;
+using Projeto.Model;
 
 namespace Projeto.Controllers;
 
@@ -21,4 +21,9 @@ public class HomeController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+}
+
+internal class ErrorViewModel
+{
+    public string RequestId { get; set; }
 }
