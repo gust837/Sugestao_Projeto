@@ -7,8 +7,9 @@ GO
 CREATE TABLE Usuario(
 	Id INT IDENTITY PRIMARY KEY,
 	Nome VARCHAR(100) NOT NULL,
-	Cpf VARCHAR(50) NOT NULL,
+	Cpf VARCHAR(11) NOT NULL,
 	Email VARCHAR(100) NOT NULL UNIQUE,
+	Senha VARCHAR(100) NOT NULL UNIQUE,
 	Adm BIT NOT NULL
 );
 GO
@@ -16,7 +17,7 @@ GO
 CREATE TABLE Sugestao(
 	Id INT IDENTITY PRIMARY KEY,
 	Nome VARCHAR(100) NOT NULL,
-	Descricao VARCHAR(MAX) NOT NULL,
+	Descricao VARCHAR(MAX),
 	StatusSugestao CHAR(1) NOT NULL
 		CHECK (StatusSugestao IN ('A', 'E', 'F')), -- A = Andamento, E = Espera, F = Finalizado
 	DataStatus DATE NOT NULL,
@@ -24,6 +25,7 @@ CREATE TABLE Sugestao(
 	Imagem VARCHAR(MAX),
 	Localizacao CHAR(1) NOT NULL
 		CHECK (Localizacao IN ('T', '1', '2', 'C', 'R')), -- T = Térreo, 1 = 1ºAndar, 2 = 2ºAndar, C = Coworking, R = Refeitorio
+	Votos INT DEFAULT 0 NOT NULL,
 
 	UsuarioId INT NOT NULL FOREIGN KEY(UsuarioId)
 	REFERENCES Usuario(Id) 
@@ -68,10 +70,10 @@ CREATE TABLE Sugestao_Categoria(
 GO
 
 -- 1. Populando a tabela Usuario
-INSERT INTO Usuario (Nome, Cpf, Email, Adm) VALUES
-('Ana Silva', '123.456.789-00', 'ana.silva@email.com', 1),    -- Administradora
-('Bruno Costa', '234.567.890-11', 'bruno.costa@email.com', 0),  -- Usuário Comum
-('Carlos Souza', '345.678.901-22', 'carlos.souza@email.com', 0); -- Usuário Comum
+INSERT INTO Usuario (Nome, Cpf, Email, Senha, Adm) VALUES
+('Ana Silva', '12345678900', 'ana.silva@email.com', '123456',1),    -- Administradora
+('Bruno Costa', '23456789011', 'bruno.costa@email.com', '654321', 0),  -- Usuário Comum
+('Carlos Souza', '34567890122', 'carlos.souza@email.com', 'qwerty', 0); -- Usuário Comum
 GO
 
 -- 2. Populando a tabela Categoria
@@ -82,7 +84,7 @@ INSERT INTO Categoria (Nome) VALUES
 GO
 
 -- 3. Populando a tabela Sugestao (Relacionada com Usuario e com Nova Coluna Localizacao)
-INSERT INTO Sugestao (Nome, Descricao, StatusSugestao, DataStatus, DataSugestao, Imagem, Localizacao, UsuarioId) VALUES
+INSERT INTO Sugestao (Nome, Descricao, StatusSugestao, DataStatus, DataSugestao, Imagem, Localizacao, Votos, UsuarioId) VALUES
 (
     'Melhoria no Wi-Fi', 
     'Instalar novos roteadores no refeitório.', 
@@ -91,7 +93,8 @@ INSERT INTO Sugestao (Nome, Descricao, StatusSugestao, DataStatus, DataSugestao,
     '2026-06-01', 
     '', 
     'R', -- R = Refeitório (conforme a descrição)
-    2
+    1,
+	2
 ), 
 (
     'Coleta Seletiva', 
@@ -101,7 +104,8 @@ INSERT INTO Sugestao (Nome, Descricao, StatusSugestao, DataStatus, DataSugestao,
     '2026-06-02', 
     '', 
     '1', -- 1 = 1º Andar
-    3
+    0,
+	3
 ), 
 (
     'Ar-condicionado', 
@@ -111,7 +115,8 @@ INSERT INTO Sugestao (Nome, Descricao, StatusSugestao, DataStatus, DataSugestao,
     '2026-05-20', 
     '', 
     'T', -- T = Térreo
-    2
+    0,
+	2
 );
 GO
 
@@ -135,5 +140,3 @@ INSERT INTO Sugestao_Categoria (SugestaoId, CategoriaId) VALUES
 (2, 2), -- 'Coleta Seletiva' associada a 'Sustentabilidade'
 (3, 1); -- 'Ar-condicionado' associada a 'Infraestrutura'
 GO
-
-SELECT * FROM Sugestao

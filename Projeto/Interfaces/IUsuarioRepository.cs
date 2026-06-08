@@ -1,12 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Projeto.Model;
 
 namespace Projeto.Interfaces
 {
     public interface IUsuarioRepository
     {
-        
+        Task<Usuario?> BuscarUsuario(string email, string senha);
+
+        Task CriarUsuario(Usuario u);
     }
 }
