@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Projeto.Model
+namespace Projeto.Models
 {
     public class Categoria
     {

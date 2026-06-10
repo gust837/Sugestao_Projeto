@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Projeto.Interfaces;
-using Projeto.Model;
+using Projeto.Models;
 
 namespace Projeto.Services
 {

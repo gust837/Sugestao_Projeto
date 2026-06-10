@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Projeto.Model
+namespace Projeto.Models
 {
     public class Sugestao
     {

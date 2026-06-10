@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Projeto.Interfaces;
-using Projeto.Model;
+using Projeto.Models;
 
 namespace Projeto.Controllers
 {

@@ -1,4 +1,4 @@
-using Projeto.Model;
+using Projeto.Models;
 
 namespace Projeto.Interfaces
 {
