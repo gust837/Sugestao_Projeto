@@ -18,17 +18,12 @@ namespace Projeto.Services
 
         public async Task<Usuario?> BuscarUsuario(string email, string senha)
         {
-            return await _repository.BuscarUsuario(email, senha);
+            return await _repository.BuscarUsuarioEmailSenha(email, senha);
         }
 
         public async Task CriarUsuario(Usuario u)
         {
-            await _repository.CriarUsuario(u);
-        }
-
-        public async Task<int> Votar(int UsuarioId, int PostId)
-        {
-            return await _repository.Votar(UsuarioId, PostId);
+            if (!await _repository.BuscarUsuario(u)) await _repository.CriarUsuario(u);
         }
     }
 }

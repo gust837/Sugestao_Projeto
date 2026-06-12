@@ -19,10 +19,10 @@ namespace Projeto.Controllers
         }
 
         [HttpPost]
-        public IActionResult Cadastrar(string Nome, string Cpf, string Email, string Senha)
+        public async Task<IActionResult> Cadastrar(string Nome, string Cpf, string Email, string Senha)
         {
             Usuario u = new Usuario(Nome, Cpf, Email, Senha, false);
-            _service.CriarUsuario(u);
+            await _service.CriarUsuario(u);
 
             return RedirectToAction("Index", "Login");
         }
@@ -38,8 +38,17 @@ namespace Projeto.Controllers
                 HttpContext.Session.SetString("Admin", usuario.Adm.ToString().ToLower());
                 return RedirectToAction("Index", "Sugestao");
             }
+            
             ViewBag.Erro = "Email ou senha incorretos";
             return RedirectToAction("Index", "Login");
+        }
+
+        [HttpPost]
+        public IActionResult Deslogar()
+        {
+            HttpContext.Session.Clear();
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

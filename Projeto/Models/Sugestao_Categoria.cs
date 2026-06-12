@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Projeto.Models
 {
-    public class SugestaoCategoria
+    public class Sugestao_Categoria
     {
         public int SugestaoId { get; set; }
         [ForeignKey("SugestaoId")]

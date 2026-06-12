@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form asp-action="NovaSugestao" asp-controller="Sugestao" method="post">
+        <label>
+            <input type="text" name="Nome">
+        </label>
+        <label>
+            <input type="text" name="Descricao">
+        </label>
+        <label>
+            <input type="hidden" name="Votos" value="0">
+        </label>
+        <label>
+            <select name="StatusSugestao">
+                <option value="A">em andamento</option>
+                <option value="E">em espera</option>
+                <option value="F">finalizado</option>
+                <option value="R">recusado</option>
+            </select>
+        </label>
+        <label>
+            <input type="hidden" name="DataStatus" value="2026-06-02">
+        </label>
+        <label>
+            <input type="hidden" name="DataSugestao" value="2026-06-02">
+        </label>
+        <label>
+            <select name="Localizacao">
+                <option value="T">terreo</option>
+                <option value="1">primeiro andar</option>
+                <option value="2">segundo andar</option>
+                <option value="C">coworking</option>
+                <option value="R">refeitorio</option>
+            </select>
+        </label>
+        <label>
+            <input type="hidden" name="UsuarioId" value="@ViewBag.UsuarioId">
+        </label>
+
+        <button type="submit">postar</button>
+    </form>
+</body>
+
+</html>

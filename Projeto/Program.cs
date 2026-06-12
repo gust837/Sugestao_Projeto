@@ -20,6 +20,9 @@ builder.Services.AddSession(options => {
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
+builder.Services.AddScoped<ISugestaoRepository, SugestaoRepository>();
+builder.Services.AddScoped<ISugestaoService, SugestaoService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,6 +35,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 

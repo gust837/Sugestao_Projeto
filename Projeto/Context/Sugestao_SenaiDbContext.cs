@@ -17,16 +17,16 @@ namespace Projeto
 
         public DbSet<Categoria> Categoria { get; set; }
 
-        public DbSet<SugestaoCategoria> SugestaoCategoria { get; set; }
+        public DbSet<Sugestao_Categoria> Sugestao_Categoria { get; set; }
 
-        public DbSet<UsuarioVoto> UsuarioVoto { get; set; }
+        public DbSet<Usuario_Voto> Usuario_Voto { get; set; }
 
         public DbSet<Comentario> Comentario { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<SugestaoCategoria>().HasKey(sg => new {sg.CategoriaId, sg.SugestaoId});
-            modelBuilder.Entity<UsuarioVoto>().HasKey(uv => new {uv.UsuarioId, uv.SugestaoId});
+            modelBuilder.Entity<Sugestao_Categoria>().HasKey(sg => new {sg.CategoriaId, sg.SugestaoId});
+            modelBuilder.Entity<Usuario_Voto>().HasKey(uv => new {uv.UsuarioId, uv.SugestaoId});
         }
         
     }

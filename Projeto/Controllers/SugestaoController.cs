@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Projeto.Interfaces;
+using Projeto.Models;
 
 namespace Projeto.Controllers
 {
@@ -12,15 +13,68 @@ namespace Projeto.Controllers
             _service = service;
         }
 
-        public IActionResult Index()
+        public bool VerificarSessaoFalse()
         {
+            return HttpContext.Session.GetString("UsuarioId") == null;
+        }
+
+        public bool VerificarSessaoAdminFalse()
+        {
+            return HttpContext.Session.GetString("Admin") != "true";
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            if (VerificarSessaoFalse()) return RedirectToAction("Index", "Login");
+            return View(await _service.ListarSugestoes());
+        }
+
+        [HttpGet]
+        public IActionResult NovaSugestao()
+        {
+            if (VerificarSessaoFalse()) return RedirectToAction("Index", "Login");
+
             return View();
         }
 
-        public void Votar(int PostId)
+        [HttpPost]
+        public async Task<IActionResult> NovaSugestao(Sugestao s, string? categorias, IFormFile arquivoImagem)
         {
-            int.TryParse(HttpContext.Session.GetString("Id"), out int UsuarioId);
-            _service.Votar(UsuarioId, PostId);
+            if (VerificarSessaoFalse()) return RedirectToAction("Index", "Login");
+
+            ViewBag.UsuarioId = HttpContext.Session.GetString("UsuarioId");
+
+            await _service.CriarSugestao(s, categorias, arquivoImagem);
+            return RedirectToAction("Index", "Sugestao");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditarSugestao(int id, string status)
+        {
+            if (VerificarSessaoAdminFalse()) return RedirectToAction("Index", "Login");
+
+            await _service.EditarStatusSugestao(id, status);
+
+            return RedirectToAction("Index", "Sugestao");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ExcluirSugestao(int id)
+        {
+            if (VerificarSessaoAdminFalse()) return RedirectToAction("Index", "Login");
+
+            await _service.ExcluirSugestao(id);
+
+            return RedirectToAction("Index", "Sugestao");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Votar(int postId)
+        {
+            int.TryParse(HttpContext.Session.GetString("UsuarioId"), out int usuarioId);
+            await _service.Votar(usuarioId, postId);
+            return RedirectToAction("Index", "Sugestao");
         }
     }
 }
