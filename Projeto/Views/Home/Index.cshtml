@@ -1,45 +1,235 @@
-﻿@section Styles{
-    <link rel="stylesheet" href="~/css/login.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" integrity="sha512-XcIsjKMcuVe0Ucj/xgIXQnytNwBttJbNjltBV18IOnru2lDPe9KRRyvCXw6Y5H415vbBLRm8+q6fmLUU7DfO6Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-}
+<!DOCTYPE html>
+<html lang="pt-br">
 
-@section Scripts{
-    <script src="~/js/login.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
-}
-    <body>
-        <main>
-            <section class="login">
-                <div class="login_content">
-                    <div>
-                        <h2 class="login_title">Bem-vindo</h2>
-                        <form action="" method="post" class="login_form">
-                            <div class="login_group">
-                                <div class="login_box">
-                                    <i class="ri-mail-fill login_icon"></i>
-                                    <input type="email" name="email" autocomplete="email" required placeholder="" class="login_input" id="email">
-                                    <label for="email" class="login_label">Email</label>
-                                </div>
-    
-                                <div class="login_box">
-                                    <i class="ri-lock-2-fill login_icon"></i>
-                                    <input type="senha" name="senha" autocomplete="senha-atual" required placeholder="" class="login_input" id="senha">
-                                    <label for="senha" class="login_label">Senha</label>
-                                </div>
-    
-                            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEMC</title>
 
-                        <a href="#" class="login_forgot">Esqueçeu a senha?</a>
-                        <button type="submit" class="login_button">Entrar <i class="ri-send-plane-2-fill"></i></button>
+    <link rel="stylesheet" href="~/css/page.css">
+    <link rel="stylesheet" href="~/css/header.css">
+    <link rel="stylesheet" href="~/css/sidebar.css">
+    <link rel="stylesheet" href="~/css/main.css">
+    <link rel="stylesheet" href="~/css/main-posts.css">
+    <link rel="stylesheet" href="~/css/main-sidebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+          integrity="sha512-XcIsjKMcuVe0Ucj/xgIXQnytNwBttJbNjltBV18IOnru2lDPe9KRRyvCXw6Y5H415vbBLRm8+q6fmLUU7DfO6Q=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-                        <p class="login_sing">Não tem uma conta? <a href="#">Cadastre-se</a></p>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 
-                        </form>
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header class="header">
+        <a href="">
+            <img src="~/img/caneta.png" class="reddit-logo">
+        </a>
+
+        <!--
+            Era: <ul class="header-actions"> + <li class="header-action">
+            Agora: <nav class="header-actions"> + <div class="header-action">
+            Motivo: não é uma lista de itens enumeráveis,
+                    é uma barra de ações/navegação do usuário.
+        -->
+        <nav class="header-actions">
+
+            <!-- Botão criar post -->
+            <div class="header-action">
+                <button>
+                    <img src="images/icons/create-post.svg">
+                    <div class="header-action-tooltip">Create post</div>
+                </button>
+            </div>
+
+            <!-- Botão perfil + menu dropdown -->
+            <div class="header-action">
+                <input type="checkbox" class="profile-menu-visibility" id="profile-menu-visibility-checkbox">
+
+                <button class="profile-menu-button">
+                    <label for="profile-menu-visibility-checkbox" class="header-action-avatar-label">
+                        <img src="images/icons/avatar.png" class="header-action-avatar">
+                    </label>
+                    <div class="online-indicator"></div>
+                    <div class="header-action-tooltip">Open profile menu</div>
+                </button>
+
+                <!--
+                    Era: <ul class="profile-menu"> + <li class="profile-menu-item">
+                    Agora: <nav class="profile-menu"> + <div class="profile-menu-item">
+                    Motivo: é um menu de opções da conta do usuário,
+                            não uma lista de itens enumeráveis.
+                -->
+                <nav class="profile-menu">
+
+                    <!-- Item: Ver perfil -->
+                    <div class="profile-menu-item">
+                        <div class="profile-menu-item-left">
+                            <img src="images/icons/avatar.png"
+                                 class="profile-menu-item-icon profile-menu-item-icon-avatar">
+                            <div class="online-indicator online-indicator-profile-menu"></div>
+                        </div>
+                        <div class="profile-menu-item-right">
+                            <div class="profile-menu-item-title">View Profile</div>
+                            <div class="profile-menu-item-extra">u/Curious_Volume3530</div>
+                        </div>
                     </div>
-                    <div class="login_image">
-                        <img src="C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\wwwroot\img\odirlei.jpeg" alt="" class="login_img">
+
+                    <!-- Item: Dark mode -->
+                    <div class="profile-menu-item">
+                        <div class="profile-menu-item-left">
+                            <img src="images/icons/dark-mode.svg" class="profile-menu-item-icon">
+                        </div>
+                        <div class="profile-menu-item-right">
+                            <div class="profile-menu-item-title profile-menu-item-dark-mode">
+                                Dark Mode
+                                <input type="checkbox">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item: Logout -->
+                    <div class="profile-menu-item">
+                        <div class="profile-menu-item-left">
+                            <img src="images/icons/logout.svg" class="profile-menu-item-icon">
+                        </div>
+                        <div class="profile-menu-item-right">
+                            <div class="profile-menu-item-title">Logout</div>
+                        </div>
+                    </div>
+
+                </nav>
+            </div>
+
+        </nav>
+    </header>
+    <!-- ========== /HEADER ========== -->
+
+
+    <!-- ========== SIDEBAR ESQUERDA ========== -->
+    <section class="sidebar">
+
+        <a href="" class="sidebar-link">
+            <img src="images/icons/home.svg">
+            <div class="sidebar-section-item-details">Home</div>
+        </a>
+
+        <a href="" class="sidebar-link">
+            <img src="images/icons/popular.svg">
+            <div class="sidebar-section-item-details">Popular</div>
+        </a>
+
+        <a href="" class="sidebar-link">
+            <img src="images/icons/all.svg">
+            <div class="sidebar-section-item-details">All</div>
+        </a>
+
+        <!-- Filtro por status -->
+        <div class="filter-by-flair sidebar-flair">
+            <div class="filter-by-flair-header">Status do post</div>
+            <div class="flair-list">
+                <button class="flair-button flair-button-resolvido">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Resolvido
+                </button>
+                <button class="flair-button flair-button-em-andamento">
+                    <i class="fa-solid fa-clock"></i>
+                    Em andamento
+                </button>
+                <button class="flair-button flair-button-recusado">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                    Recusado
+                </button>
+            </div>
+        </div>
+
+    </section>
+    <!-- ========== /SIDEBAR ESQUERDA ========== -->
+
+
+    <!-- ========== CONTEÚDO PRINCIPAL ========== -->
+    <main>
+
+        <!-- Cabeçalho da área principal -->
+        <div class="main-head">
+            <div class="main-head-info">
+                <div class="main-head-community">
+                    <h1>Home page</h1>
+                </div>
+                <div class="community-actions">
+                    <button class="community-action-create-post">Create a post</button>
+                    <div class="community-action-more-container">
+                        <input type="checkbox" id="community-action-more-checkbox">
+                        <button class="community-action-more">
+                            <label for="community-action-more-checkbox">
+                                <img src="images/icons/three-dots.svg">
+                            </label>
+                        </button>
                     </div>
                 </div>
-            </section>
-        </main>
-    </body>
+            </div>
+        </div>
+
+        <!-- Lista de posts -->
+        <section class="main-posts">
+
+            <div class="post-container">
+                <div class="post">
+                    <div class="post-meta">
+                        <div class="post-user-info">
+                            <img src="images/icons/avatar.png">
+                            <span class="post-user-name">u/QuinnHannan1</span>
+                        </div>
+                        <div class="post-created-at">&bull; 5 days ago</div>
+                    </div>
+
+                    <h2 class="post-header">I fired a great dev and wasted $50,000</h2>
+
+                    <div class="post-preview">
+                        <div class="post-activity">
+
+                            <!-- Votos -->
+                            <div class="post-vote post-activity-container">
+                                <button class="post-activity-button">
+                                    <img src="images/icons/upvote.svg" class="upvote-default">
+                                    <img src="images/icons/upvote-active.svg" class="upvote-active">
+                                </button>
+                                <span class="post-vote-score">720</span>
+                                <button class="post-activity-button">
+                                    <img src="images/icons/downvote.svg" class="downvote-default">
+                                    <img src="images/icons/downvote-active.svg" class="downvote-active">
+                                </button>
+                            </div>
+
+                            <!-- Comentários -->
+                            <button class="post-comment post-activity-button post-activity-container">
+                                <img src="images/icons/comment.svg">
+                                <span class="post-comment-amount">99</span>
+                            </button>
+
+                            <!-- Compartilhar -->
+                            <button class="post-share post-activity-button post-activity-container">
+                                <img src="images/icons/share.svg">
+                                <span>Share</span>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- /Lista de posts -->
+
+    </main>
+    <!-- ========== /CONTEÚDO PRINCIPAL ========== -->
+
+</body>
+</html>

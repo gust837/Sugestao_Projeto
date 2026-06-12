@@ -1,0 +1,138 @@
+/* =============================================
+   sidebar.css — Sidebar de navegação esquerda
+   ============================================= */
+
+/* ── Container principal (section.sidebar) ── */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 56px;                          /* altura exata do header */
+    padding: 8px 12px;
+    margin: 0;
+    background-color: white;
+    width: 220px;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    height: calc(100vh - 56px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    box-sizing: border-box;
+}
+
+.sidebar:hover {
+    scrollbar-color: auto;
+}
+
+/* ── Separador visual entre links e bloco de flair ── */
+.sidebar > a {
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 4px 0;
+}
+
+.sidebar > a:last-of-type {
+    border-bottom: none;
+}
+
+/* ── Links de navegação ── */
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 8px;
+    color: rgb(33, 39, 42);
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.sidebar-link:hover {
+    background-color: rgb(246, 248, 249);
+    cursor: pointer;
+}
+
+.sidebar-link:active {
+    background-color: rgba(0, 0, 0, 0.16);
+}
+
+.sidebar-link > img {
+    width: 20px;
+    height: 20px;
+}
+
+.sidebar-section-item-details {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+}
+
+/* ── Bloco de filtro por flair ── */
+.sidebar .filter-by-flair {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar .filter-by-flair-header {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: rgb(87, 111, 118);
+    margin: 0;
+    padding: 0 4px;
+    letter-spacing: 0.5px;
+}
+
+.sidebar .flair-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+/* ── Botões de flair ── */
+.flair-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 20px;
+    background-color: transparent;
+    border: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+}
+
+.flair-button:hover {
+    opacity: 0.9;
+}
+
+.flair-button:active {
+    opacity: 0.75;
+}
+
+.flair-button i {
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+.flair-button-resolvido {
+    background-color: rgb(52, 158, 72);
+}
+
+.flair-button-em-andamento {
+    background-color: rgb(255, 176, 0);
+}
+
+.flair-button-recusado {
+    background-color: rgb(234, 0, 39);
+}

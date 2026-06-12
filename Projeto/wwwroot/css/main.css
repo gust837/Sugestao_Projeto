@@ -1,0 +1,148 @@
+/* =============================================
+   main.css — Área de conteúdo principal
+   ============================================= */
+
+/* ── Tag <main> usada no Index.cshtml ── */
+main {
+    margin-left: 244px;           /* largura da sidebar (220px) + padding (24px) */
+    padding: 16px 24px 24px 24px;
+    min-height: calc(100vh - 56px);
+    box-sizing: border-box;
+}
+
+/* ── Cabeçalho da área (Home page + botão) ── */
+.main-head {
+    margin-bottom: 16px;
+}
+
+.main-head-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-head-community {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.main-head-community > h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: rgb(15, 26, 28);
+}
+
+/* ── Botões de ação da comunidade ── */
+.community-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.community-actions button:hover {
+    cursor: pointer;
+}
+
+.community-action-create-post {
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    color: rgb(15, 26, 28);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.community-action-create-post:hover {
+    border-color: rgb(15, 26, 28);
+}
+
+.community-action-create-post:active {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.community-action-create-post > img {
+    width: 20px;
+    height: 20px;
+}
+
+/* ── Botão "mais opções" (três pontos) ── */
+.community-action-more-container {
+    position: relative;
+}
+
+#community-action-more-checkbox {
+    display: none;
+}
+
+.community-action-more {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.community-action-more:hover {
+    border-color: rgb(15, 26, 28);
+}
+
+.community-action-more:active {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.community-action-more > label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* ── Menu "mais opções" dropdown ── */
+.more-menu {
+    display: none;
+    position: absolute;
+    top: 44px;
+    right: 0;
+    z-index: 5;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 8px 0,
+                rgba(0, 0, 0, 0.25) 0 6px 12px 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+#community-action-more-checkbox:checked ~ .more-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.more-menu-item {
+    padding: 12px 16px;
+    white-space: nowrap;
+    color: rgb(15, 26, 28);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.more-menu-item:hover {
+    background-color: rgb(242, 244, 245);
+}
+
+.more-menu-item:active {
+    background-color: rgba(0, 0, 0, 0.1);
+}

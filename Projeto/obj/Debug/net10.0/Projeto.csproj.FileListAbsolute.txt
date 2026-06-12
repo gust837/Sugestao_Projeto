@@ -128,7 +128,6 @@ C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\rjimsw
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\scopedcss\bundle\Projeto.styles.css
-C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\7ui2llpeqd-{0}-b9sayid5wm-b9sayid5wm.gz
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\90bvmojewl-{0}-61n19gt1b8-61n19gt1b8.gz
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\2oxohpb3fa-{0}-bqjiyaj88i-bqjiyaj88i.gz
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\o3hibig160-{0}-c2jlpeoesf-c2jlpeoesf.gz
@@ -201,5 +200,11 @@ C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\Projet
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\Projeto.genruntimeconfig.cache
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\ref\Projeto.dll
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\nt7u91hi3m-{0}-yriqb449vx-yriqb449vx.gz
-C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\necipcz6ie-{0}-7ucgd369b6-7ucgd369b6.gz
-C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\smveabck7j-{0}-ao3sk123e1-ao3sk123e1.gz
+C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\necipcz6ie-{0}-xkh6eos5f0-xkh6eos5f0.gz
+C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\qj7roh3pf2-{0}-29mcpgmvgw-29mcpgmvgw.gz
+C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\umxswdfs91-{0}-kzyvlym3tw-kzyvlym3tw.gz
+C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\zu1zppvkwx-{0}-ob6p6dqaax-ob6p6dqaax.gz
+C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\smveabck7j-{0}-qqeyrshro8-qqeyrshro8.gz
+C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\71l27gqzxu-{0}-pk22slc6fz-pk22slc6fz.gz
+C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\1ji3m8wdom-{0}-quem7496ol-quem7496ol.gz
+C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\maim1z5oei-{0}-ljrg8h6j4n-ljrg8h6j4n.gz

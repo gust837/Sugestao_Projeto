@@ -122,6 +122,11 @@ img {
     font-weight: initial;
 }
 
+.login_senha{
+    width: 2.5rem;
+    height: 1rem;
+}
+
 .login_label{
     position: absolute;
     left: 3.5rem;
@@ -173,7 +178,7 @@ img {
 
 .login_button i{
     font-weight: initial;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .login_button:hover{
