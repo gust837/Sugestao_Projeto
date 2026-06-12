@@ -1,24 +1,42 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Projeto.Models;
+using Projeto.Services;
 
 namespace Projeto.Controllers;
 
 public class HomeController : Controller
 {
+    private readonly SugestaoService _sugestaoService;
+    private readonly ContentSafetyService _contentSafetyService;
+
+    public HomeController(SugestaoService sugestaoService, ContentSafetyService contentSafetyService)
+    {
+        _sugestaoService = sugestaoService;
+        _contentSafetyService = contentSafetyService;
+    }
+
     public IActionResult Index()
     {
-        return View();
+        var sugestao = _sugestaoService.GetAll();
+        return View(sugestao);
     }
 
-    public IActionResult Privacy()
+    [HttpPost]
+    public async Task<IActionResult> AdicionarSugestao(Sugestao sugestao)
     {
-        return View();
-    }
+        if (ModelState.IsValid)
+        {
+            var safetyCheck = await _contentSafetyService.ValidateProductAsync(sugestao);
+            
+            if (!safetyCheck.IsSafe)
+            {
+                TempData["ErrorMessage"] = safetyCheck.Message;
+                return RedirectToAction(nameof(Index));
+            }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            _sugestaoService.Add(sugestao);
+            TempData["SuccessMessage"] = "Sugestão validada e cadastrada com sucesso!";
+        }
+        return RedirectToAction(nameof(Index));
     }
 }
