@@ -12,7 +12,7 @@ namespace Projeto.Services
 
         public IEnumerable<Sugestao> GetAll() => _sugestoes;
 
-        public void Add(Sugestao sugestao)
+        public void Adicionar(Sugestao sugestao)
         {
             sugestao.Id = Guid.NewGuid();
             _sugestoes.Add(sugestao);
