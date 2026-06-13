@@ -12,6 +12,8 @@ namespace Projeto.Interfaces
 
         Task ExcluirSugestao(Sugestao s);
 
+        Task ExcluirVotos(int sugId);
+
         Task ExcluirSugCat(int sugId);
 
         Task<IEnumerable<Sugestao>> ListarSugestoes();

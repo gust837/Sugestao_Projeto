@@ -42,6 +42,13 @@ namespace Projeto.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task ExcluirVotos(int sugId)
+        {
+            var votos = _context.Usuario_Voto.Where(uv => uv.SugestaoId == sugId).ToList();
+            _context.Usuario_Voto.RemoveRange(votos);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<Sugestao>> ListarSugestaoPorCategoria(int categoriaId)
         {
             return await _context.Sugestao.Where(s => s.Categorias.Any(c => c.Id == categoriaId)).OrderByDescending(r => r.Votos).ToListAsync();

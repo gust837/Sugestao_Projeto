@@ -60,6 +60,7 @@ namespace Projeto.Services
             if (sug != null)
             {
                 await _repository.ExcluirSugCat(sugId);
+                await _repository.ExcluirVotos(sugId);
                 await _repository.ExcluirSugestao(sug);
             }
         }
