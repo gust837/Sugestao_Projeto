@@ -26,6 +26,6 @@ namespace Projeto.Interfaces
 
         Task Votar(Sugestao s, Usuario_Voto uv);
 
-        Task RemoverVoto(Sugestao s, Usuario_Voto uv);
+        Task RemoverVoto(Sugestao s, int usuarioId, int sugestaoId);
     }
 }

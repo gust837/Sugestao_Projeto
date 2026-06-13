@@ -91,7 +91,7 @@ namespace Projeto.Services
             else
             {
                 sug.Votos--;
-                await _repository.RemoverVoto(sug, new Usuario_Voto(usuarioId, postId));
+                await _repository.RemoverVoto(sug, usuarioId, postId);
             }
         }
 

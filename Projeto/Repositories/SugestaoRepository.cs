@@ -74,10 +74,16 @@ namespace Projeto.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task RemoverVoto(Sugestao s, Usuario_Voto uv)
+        public async Task RemoverVoto(Sugestao s, int usuarioId, int sugestaoId)
         {
             _context.Sugestao.Update(s);
-            _context.Usuario_Voto.Remove(uv);
+            _context.Sugestao.Update(s);
+
+            var uvExistente = await _context.Usuario_Voto
+                .FindAsync(usuarioId, sugestaoId);
+            if (uvExistente != null)
+                _context.Usuario_Voto.Remove(uvExistente);
+
             await _context.SaveChangesAsync();
         }
 

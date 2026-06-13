@@ -3090,31 +3090,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\54568203821\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\lucca\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\54568203821\\Desktop\\atividades\\Sugestao_Projeto\\Projeto\\Projeto.csproj",
+      "projectUniqueName": "C:\\Users\\lucca\\OneDrive\\Desktop\\atalhos\\não bomba\\dev senai\\Sugestao_Projeto\\Projeto\\Projeto.csproj",
       "projectName": "Projeto",
-      "projectPath": "C:\\Users\\54568203821\\Desktop\\atividades\\Sugestao_Projeto\\Projeto\\Projeto.csproj",
-      "packagesPath": "C:\\Users\\54568203821\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\54568203821\\Desktop\\atividades\\Sugestao_Projeto\\Projeto\\obj\\",
+      "projectPath": "C:\\Users\\lucca\\OneDrive\\Desktop\\atalhos\\não bomba\\dev senai\\Sugestao_Projeto\\Projeto\\Projeto.csproj",
+      "packagesPath": "C:\\Users\\lucca\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\lucca\\OneDrive\\Desktop\\atalhos\\não bomba\\dev senai\\Sugestao_Projeto\\Projeto\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\54568203821\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\lucca\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

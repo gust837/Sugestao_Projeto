@@ -43,7 +43,10 @@ namespace Projeto.Controllers
         {
             if (VerificarSessaoFalse()) return RedirectToAction("Index", "Login");
 
-            ViewBag.UsuarioId = HttpContext.Session.GetString("UsuarioId");
+            int.TryParse(HttpContext.Session.GetString("UsuarioId"), out int usuarioId);
+            s.UsuarioId = usuarioId;
+            s.DataStatus = DateTime.Today;
+            s.DataSugestao = DateTime.Today;
 
             await _service.CriarSugestao(s, categorias, arquivoImagem);
             return RedirectToAction("Index", "Sugestao");
