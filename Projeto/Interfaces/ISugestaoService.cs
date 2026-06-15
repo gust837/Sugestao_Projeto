@@ -17,6 +17,6 @@ namespace Projeto.Interfaces
 
         Task<IEnumerable<Sugestao>> ListarSugestaoPorStatus(string status);
 
-        Task<IEnumerable<Sugestao>> ListarSugestaoPorCategoria(int CategoriaId);
+        Task<IEnumerable<Categoria>> ListarCategorias();
     }
 }

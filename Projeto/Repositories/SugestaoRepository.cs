@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Threading.Tasks;
+using Azure.Core;
 using Microsoft.EntityFrameworkCore;
 using Projeto.Interfaces;
 using Projeto.Models;
@@ -56,11 +57,6 @@ namespace Projeto.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Sugestao>> ListarSugestaoPorCategoria(int categoriaId)
-        {
-            return await _context.Sugestao.Where(s => s.Categorias.Any(c => c.Id == categoriaId)).OrderByDescending(r => r.Votos).ToListAsync();
-        }
-
         public async Task<IEnumerable<Sugestao>> ListarSugestaoPorStatus(string status)
         {
             return await _context.Sugestao.Where(s => s.StatusSugestao == status).OrderByDescending(r => r.Votos).ToListAsync();
@@ -68,7 +64,12 @@ namespace Projeto.Repositories
 
         public async Task<IEnumerable<Sugestao>> ListarSugestoes()
         {
-            return await _context.Sugestao.OrderByDescending(r => r.Votos).ToListAsync();
+            return await _context.Sugestao.Include(s => s.Sugestao_Categorias).ThenInclude(sg => sg.Categoria).Include(s => s.Usuario).OrderByDescending(r => r.Votos).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Categoria>> ListarCategorias()
+        {
+            return await _context.Categoria.ToListAsync();
         }
 
         public async Task<bool> VerificarUsuarioVoto(int usuarioId, int postId)

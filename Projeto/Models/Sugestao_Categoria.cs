@@ -5,10 +5,12 @@ namespace Projeto.Models
     public class Sugestao_Categoria
     {
         public int SugestaoId { get; set; }
+        
         [ForeignKey("SugestaoId")]
         public Sugestao Sugestao { get; set; } = null!;
 
         public int CategoriaId { get; set; }
+
         [ForeignKey("CategoriaId")]
         public Categoria Categoria { get; set; } = null!;
     }

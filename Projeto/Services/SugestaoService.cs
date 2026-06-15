@@ -83,12 +83,7 @@ namespace Projeto.Services
                 await _repository.ExcluirSugestao(sug);
             }
         }
-
-        public async Task<IEnumerable<Sugestao>> ListarSugestaoPorCategoria(int categoriaId)
-        {
-            return await _repository.ListarSugestaoPorCategoria(categoriaId);
-        }
-
+        
         public async Task<IEnumerable<Sugestao>> ListarSugestaoPorStatus(string status)
         {
             return await _repository.ListarSugestaoPorStatus(status);
@@ -97,6 +92,11 @@ namespace Projeto.Services
         public async Task<IEnumerable<Sugestao>> ListarSugestoes()
         {
             return await _repository.ListarSugestoes();
+        }
+
+        public async Task<IEnumerable<Categoria>> ListarCategorias()
+        {
+            return await _repository.ListarCategorias();
         }
 
         public async Task Votar(int usuarioId, int postId)

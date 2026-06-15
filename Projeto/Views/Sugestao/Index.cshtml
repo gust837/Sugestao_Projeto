@@ -18,6 +18,7 @@
                 <th>id</th>
                 <th>título</th>
                 <th>descrição</th>
+                <th>categorias</th>
                 <th>status sugestaão</th>
                 <th>data status</th>
                 <th>data sugestão</th>
@@ -29,10 +30,12 @@
         <tbody>
             @foreach (Sugestao s in Model)
             {
+                string categorias = string.Join(", ", s.Sugestao_Categorias.Select(sg => sg.Categoria.Nome));
                 <tr>
                     <th>@s.Id</th>
                     <th>@s.Nome</th>
                     <th>@s.Descricao</th>
+                    <th>@categorias</th>
                     <th>
                         @s.StatusSugestao
                         <form method="post" asp-action="EditarSugestao" asp-controller="Sugestao">
@@ -48,8 +51,8 @@
                             <button type="submit">confirmar edição</button>
                         </form>
                     </th>
-                    <th>@s.DataStatus</th>
-                    <th>@s.DataSugestao</th>
+                    <th>@s.DataStatus.Date</th>
+                    <th>@s.DataSugestao.Date</th>
                     <th>@s.Localizacao</th>
                     <th>@s.Votos</th>
                     <th>

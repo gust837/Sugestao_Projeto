@@ -1,0 +1,53 @@
+@using Projeto.Models
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postar SEMC</title>
+    <link rel="stylesheet" href="~/css/postar.css">
+</head>
+
+<body>
+    <section class="postar">
+        <form method="post" asp-action="NovoPost" asp-controller="Feed">
+            <div class="postar_box_area">
+                <span class="placeholder">O que podemos melhorar?</span>
+                <label>
+                    <input type="text" name="Nome">
+                </label>
+                <label>
+                    <input type="text" name="Descricao">
+                </label>
+                <input type="hidden" name="StatusSugestao" value="E">
+            </div>
+            <nav class="footer_box">
+                <ul class="footer_categorias">
+                    <select name="Categorias" id="">
+                        <option value="" disabled selected>Selecione</option>
+                        @if (ViewBag.Categorias != null) foreach (Categoria c in ViewBag.Categorias)
+                        {
+                            <option value="@c.Id">@c.Nome</option>
+                        }
+                    </select>
+
+                    <select name="Localizacao" id="">
+                        <option value="" selected disabled>Local</option>
+                        <option value="1">1° Andar</option>
+                        <option value="2">2° Andar</option>
+                        <option value="C">Cowork</option>
+                        <option value="B">Biblioteca</option>
+                        <option value="R">Refeitório</option>
+                    </select>
+                </ul>
+            </nav>
+            <div class="limiteCaracteres">
+                <button type="submit" class="post_btn">Post</button>
+            </div>
+        </form>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,160 @@
+﻿@using Projeto.Models
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>SEMC - Main Feed</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+          rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/css/main.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <span class="logo-text">SEMC</span>
+        </div>
+        <div class="navbar-actions">
+            <button class="btn-icon">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="main-layout">
+
+        <aside class="sidebar">
+            <a asp-action="NovoPost" asp-controller="Feed" method="post" class="a-cta">
+                <span class="material-symbols-outlined">add</span>
+                Create New Post
+            </a>
+
+            <div class="filter-menu">
+                <div class="filter-header">
+                    <h2>Filter by Status</h2>
+                    <p>Track feedback progress</p>
+                </div>
+                <nav class="filter-nav">
+                    <button class="filter-btn"
+                            onclick="document.querySelectorAll('article').forEach(a => a.style.display = a.innerText.includes('Reported') ? 'flex' : 'none')">
+                        <span class="material-symbols-outlined text-red">report</span>
+                        <span class="filter-label">Reported</span>
+                        <span class="badge">12</span>
+                    </button>
+                    <button class="filter-btn"
+                            onclick="document.querySelectorAll('article').forEach(a => a.style.display = a.innerText.includes('In Progress') ? 'flex' : 'none')">
+                        <span class="material-symbols-outlined text-yellow">pending_actions</span>
+                        <span class="filter-label">In Progress</span>
+                        <span class="badge">5</span>
+                    </button>
+                    <button class="filter-btn"
+                            onclick="document.querySelectorAll('article').forEach(a => a.style.display = a.innerText.includes('Resolved') ? 'flex' : 'none')">
+                        <span class="material-symbols-outlined text-green">check_circle</span>
+                        <span class="filter-label">Resolved</span>
+                        <span class="badge">28</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="sidebar-footer">
+                <p class="footer-links">
+                    <a href="#">About</a>
+                    <span class="bullet">•</span>
+                    <a href="#">Guidelines</a>
+                    <span class="bullet">•</span>
+                    <a href="#">Privacy</a>
+                </p>
+                <p class="copyright">© 2024 SEMC</p>
+            </div>
+        </aside>
+
+        <main class="feed-container">
+
+            <div class="mobile-filters">
+                <button class="mobile-filter-btn">
+                    <span class="dot bg-red"></span> Reported
+                </button>
+                <button class="mobile-filter-btn">
+                    <span class="dot bg-yellow"></span> In Progress
+                </button>
+                <button class="mobile-filter-btn">
+                    <span class="dot bg-green"></span> Resolved
+                </button>
+            </div>
+
+            @foreach (Sugestao s in Model)
+            {
+                string categorias = string.Join(" • ", s.Sugestao_Categorias.Select(c => c.Categoria.Nome));
+                string statusNome = "";
+
+                if (s.StatusSugestao == "A") statusNome = "Em andamento";
+                else if (s.StatusSugestao == "E") statusNome = "Em espera";
+                else if (s.StatusSugestao == "F") statusNome = "Feito";
+                else if (s.StatusSugestao == "R") statusNome = "Recusado";
+
+                TimeSpan diferenca = DateTime.Now - s.DataSugestao;
+                string tempoTexto = "";
+
+                if (diferenca.TotalMinutes < 1) tempoTexto = "agora mesmo";
+                else if (diferenca.TotalMinutes < 60) tempoTexto = $"{(int)diferenca.TotalMinutes} min";
+                else if (diferenca.TotalHours < 24) tempoTexto = $"{(int)diferenca.TotalHours} h";
+                else if (diferenca.TotalDays < 7) tempoTexto = $"{(int)diferenca.TotalDays} d";
+                else if (diferenca.TotalDays < 30) tempoTexto = $"{(int)(diferenca.TotalDays / 7)} sem";
+                else if (diferenca.TotalDays < 365) tempoTexto = $"{(int)(diferenca.TotalDays / 30)} mês";
+                else tempoTexto = $"{(int)(diferenca.TotalDays / 365)} ano(s)";
+
+                <article class="post-card">
+                    <div class="vote-sidebar">
+                        <form asp-action="Votar" asp-controller="Feed" method="post">
+                            <input type="hidden" value="@s.Id" name="postId">
+                            <button class="vote-btn vote-up" type="submit">
+                                <span class="material-symbols-outlined">keyboard_arrow_up</span>
+                            </button>
+                        </form>
+                        <span class="vote-count">@s.Votos</span>
+                        @* <button class="vote-btn vote-down">
+                            <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                        </button> *@
+                    </div>
+                    <div class="post-content">
+                        <div class="post-header">
+                            <div class="post-info">
+                                <div class="post-meta">
+                                    <span class="author">@s.Usuario.Nome</span>
+                                    <span class="bullet">•</span>
+                                    <span>@tempoTexto</span>
+                                    <span class="bullet">•</span>
+                                    <span>@categorias</span>
+                                </div>
+                                <h3 class="post-title">@s.Nome</h3>
+                            </div>
+                            <span class="status-pill reported">
+                                <span class="material-symbols-outlined">report</span> @statusNome
+                            </span>
+                        </div>
+                        <p class="post-body">
+                            @s.Descricao
+                        </p>
+                        <div class="post-actions">
+                            <button class="btn-action">
+                                <span class="material-symbols-outlined">chat_bubble</span> 42 Comments
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            }
+
+            <div class="loading-container">
+                <span class="material-symbols-outlined animate-spin">autorenew</span>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

@@ -36,7 +36,7 @@ namespace Projeto.Controllers
             {
                 HttpContext.Session.SetString("UsuarioId", usuario.Id.ToString());
                 HttpContext.Session.SetString("Admin", usuario.Adm.ToString().ToLower());
-                return RedirectToAction("Index", "Sugestao");
+                return RedirectToAction("Index", "Feed");
             }
             
             ViewBag.Erro = "Email ou senha incorretos";
