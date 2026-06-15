@@ -9,7 +9,7 @@ namespace Projeto.Models
         public int Id { get; set; }
 
         [Required]
-        public string? Descricao { get; set; } = null!;
+        public string Descricao { get; set; } = null!;
 
         [Required]
         public DateTime DataComentario { get; set; }

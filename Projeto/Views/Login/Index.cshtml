@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form method="post" asp-action="Logar" asp-controller="Login">
+
+        <!-- Mensagem de erro -->
+        @if (ViewBag.Erro != null)
+        {
+            <p class="msg_erro_login">E-mail ou senha incorretos!</p>
+        }
+
+        <div class="form_linha">
+            <label for="email">E-mail</label>
+
+            <input type="email" name="Email" id="email" placeholder="email@alunosenai.com" required>
+        </div>
+
+        <div class="form_linha">
+            <label for="senha">Senha</label>
+
+            <input type="password" name="Senha" id="senha" placeholder="**********" required>
+        </div>
+
+        <div class="recuperar_senha">
+            <a href="">
+                Esqueci minha senha
+            </a>
+        </div>
+
+        <button type="submit">
+            entrar
+        </button>
+
+    </form>
+
+</body>
+
+</html>

@@ -19,12 +19,12 @@ CREATE TABLE Sugestao(
 	Nome VARCHAR(100) NOT NULL,
 	Descricao VARCHAR(MAX),
 	StatusSugestao CHAR(1) NOT NULL
-		CHECK (StatusSugestao IN ('A', 'E', 'F')), -- A = Andamento, E = Espera, F = Finalizado
+		CHECK (StatusSugestao IN ('A', 'E', 'F', 'R')), -- A = Andamento, E = Espera, F = Finalizado, R = Recusado
 	DataStatus DATE NOT NULL,
 	DataSugestao DATE NOT NULL,
 	Imagem VARCHAR(MAX),
 	Localizacao CHAR(1) NOT NULL
-		CHECK (Localizacao IN ('T', '1', '2', 'C', 'R')), -- T = Térreo, 1 = 1ºAndar, 2 = 2ºAndar, C = Coworking, R = Refeitorio
+		CHECK (Localizacao IN ('T', '1', '2', 'C', 'R')), -- T = Tï¿½rreo, 1 = 1ï¿½Andar, 2 = 2ï¿½Andar, C = Coworking, R = Refeitorio
 	Votos INT DEFAULT 0 NOT NULL,
 
 	UsuarioId INT NOT NULL FOREIGN KEY(UsuarioId)
@@ -72,8 +72,8 @@ GO
 -- 1. Populando a tabela Usuario
 INSERT INTO Usuario (Nome, Cpf, Email, Senha, Adm) VALUES
 ('Ana Silva', '12345678900', 'ana.silva@email.com', '123456',1),    -- Administradora
-('Bruno Costa', '23456789011', 'bruno.costa@email.com', '654321', 0),  -- Usuário Comum
-('Carlos Souza', '34567890122', 'carlos.souza@email.com', 'qwerty', 0); -- Usuário Comum
+('Bruno Costa', '23456789011', 'bruno.costa@email.com', '654321', 0),  -- Usuï¿½rio Comum
+('Carlos Souza', '34567890122', 'carlos.souza@email.com', 'qwerty', 0); -- Usuï¿½rio Comum
 GO
 
 -- 2. Populando a tabela Categoria
@@ -87,12 +87,12 @@ GO
 INSERT INTO Sugestao (Nome, Descricao, StatusSugestao, DataStatus, DataSugestao, Imagem, Localizacao, Votos, UsuarioId) VALUES
 (
     'Melhoria no Wi-Fi', 
-    'Instalar novos roteadores no refeitório.', 
+    'Instalar novos roteadores no refeitï¿½rio.', 
     'A', 
     '2026-06-01', 
     '2026-06-01', 
     '', 
-    'R', -- R = Refeitório (conforme a descrição)
+    'R', -- R = Refeitï¿½rio (conforme a descriï¿½ï¿½o)
     1,
 	2
 ), 
@@ -103,18 +103,18 @@ INSERT INTO Sugestao (Nome, Descricao, StatusSugestao, DataStatus, DataSugestao,
     '2026-06-02', 
     '2026-06-02', 
     '', 
-    '1', -- 1 = 1º Andar
+    '1', -- 1 = 1ï¿½ Andar
     0,
 	3
 ), 
 (
     'Ar-condicionado', 
-    'Manutenção preventiva dos aparelhos do bloco B.', 
+    'Manutenï¿½ï¿½o preventiva dos aparelhos do bloco B.', 
     'F', 
     '2026-06-05', 
     '2026-05-20', 
     '', 
-    'T', -- T = Térreo
+    'T', -- T = Tï¿½rreo
     0,
 	2
 );
@@ -122,16 +122,16 @@ GO
 
 -- 4. Populando a tabela Comentario (Relacionada com Usuario e Sugestao)
 INSERT INTO Comentario (Descricao, DataComentario, UsuarioId, SugestaoId) VALUES
-('Excelente ideia, o sinal cai muito lá.', '2026-06-02', 3, 1), -- Carlos comentou na sugestão 1
-('Já estamos cotando os novos aparelhos.', '2026-06-03', 1, 1),  -- Ana (Adm) comentou na sugestão 1
-('Obrigado pela agilidade na manutenção!', '2026-06-06', 2, 3); -- Bruno comentou na sugestão 3
+('Excelente ideia, o sinal cai muito lï¿½.', '2026-06-02', 3, 1), -- Carlos comentou na sugestï¿½o 1
+('Jï¿½ estamos cotando os novos aparelhos.', '2026-06-03', 1, 1),  -- Ana (Adm) comentou na sugestï¿½o 1
+('Obrigado pela agilidade na manutenï¿½ï¿½o!', '2026-06-06', 2, 3); -- Bruno comentou na sugestï¿½o 3
 GO
 
 -- 5. Populando a tabela Usuario_Voto (Relacionada com Usuario e Sugestao)
 INSERT INTO Usuario_Voto (UsuarioId, SugestaoId) VALUES
-(1, 1), -- Ana votou na sugestão do Wi-Fi
-(3, 1), -- Carlos votou na sugestão do Wi-Fi
-(2, 2); -- Bruno votou na sugestão da Coleta Seletiva
+(1, 1), -- Ana votou na sugestï¿½o do Wi-Fi
+(3, 1), -- Carlos votou na sugestï¿½o do Wi-Fi
+(2, 2); -- Bruno votou na sugestï¿½o da Coleta Seletiva
 GO
 
 -- 6. Populando a tabela Sugestao_Categoria (Relacionada com Sugestao e Categoria)

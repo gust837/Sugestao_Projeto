@@ -4,6 +4,8 @@ namespace Projeto.Models
 {
     public class Usuario
     {
+        protected Usuario(){}
+
         public Usuario(string n, string c, string e, string s, bool a)
         {
             Nome = n;

@@ -5,7 +5,7 @@ namespace Projeto.Models
 {
     public class Sugestao
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public int Id { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -13,7 +13,7 @@ namespace Projeto.Models
 
         public string? Descricao { get; set; }
 
-        public int Votos;
+        public int Votos { get; set; }
 
         [Required]
         [StringLength(1)]
@@ -36,5 +36,7 @@ namespace Projeto.Models
 
         [ForeignKey("UsuarioId")]
         public Usuario Usuario { get; set; } = null!;
+
+        public ICollection<Categoria> Categorias { get; set; } = new List<Categoria>();
     }
 }

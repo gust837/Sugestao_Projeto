@@ -17,7 +17,7 @@ namespace Projeto.Repositories
             _context = context;
         }
 
-        public async Task<Usuario?> BuscarUsuario(string email, string senha)
+        public async Task<Usuario?> BuscarUsuarioEmailSenha(string email, string senha)
         {
             return await _context.Usuario.FirstOrDefaultAsync(u => u.Email == email && u.Senha == senha);
         }
@@ -28,21 +28,9 @@ namespace Projeto.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<int> Votar(int IdUsuario, int IdPost)
+        public async Task<bool> BuscarUsuario(Usuario u)
         {
-            var voto = await _context.UsuarioVoto.FirstOrDefaultAsync(uv => uv.SugestaoId == IdPost && uv.UsuarioId == IdUsuario);
-            var sug = await _context.Sugestao.FirstOrDefaultAsync(s => s.Id == IdPost);
-
-            if (voto == null)
-            {
-                sug.Votos++;
-            }
-            else
-            {
-                sug.Votos--;
-            }
-
-            return sug.Votos;
+            return await _context.Usuario.FirstOrDefaultAsync(f => f.Email == u.Email) != null;
         }
     }
 }

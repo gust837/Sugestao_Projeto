@@ -1,0 +1,75 @@
+@using Projeto.Models
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    @model IEnumerable<Sugestao>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>título</th>
+                <th>descrição</th>
+                <th>status sugestaão</th>
+                <th>data status</th>
+                <th>data sugestão</th>
+                <th>localização</th>
+                <th>votos</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (Sugestao s in Model)
+            {
+                <tr>
+                    <th>@s.Id</th>
+                    <th>@s.Nome</th>
+                    <th>@s.Descricao</th>
+                    <th>
+                        @s.StatusSugestao
+                        <form method="post" asp-action="EditarSugestao" asp-controller="Sugestao">
+                            <input type="hidden" value="@s.Id" name="id">
+                            <label for="status">
+                                <select name="status">
+                                    <option value="A">em andamento</option>
+                                    <option value="E">em espera</option>
+                                    <option value="F">finalizado</option>
+                                    <option value="R">recusado</option>
+                                </select>
+                            </label>
+                            <button type="submit">confirmar edição</button>
+                        </form>
+                    </th>
+                    <th>@s.DataStatus</th>
+                    <th>@s.DataSugestao</th>
+                    <th>@s.Localizacao</th>
+                    <th>@s.Votos</th>
+                    <th>
+                        <form method="post" asp-action="ExcluirSugestao" asp-controller="Sugestao">
+                            <input type="hidden" value="@s.Id" name="id">
+                            <button type="submit">❌</button>
+                        </form>
+
+                        <form method="post" asp-action="Votar" asp-controller="Sugestao">
+                            <input type="hidden" value="@s.Id" name="postId">
+                            <button type="submit">👍</button>
+                        </form>
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-action="NovaSugestao" asp-controller="Sugestao" method="get">nova sugestão</a>
+
+</body>
+
+</html

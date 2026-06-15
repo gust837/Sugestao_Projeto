@@ -10,6 +10,8 @@ namespace Projeto.Models
         [Required]
         [StringLength(100)]
         public string Nome { get; set; } = null!;
+
+        public ICollection<Sugestao> Sugestoes { get; set; }= new List<Sugestao>();
          
     }
 }

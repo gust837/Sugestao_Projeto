@@ -22,6 +22,8 @@ builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
 builder.Services.AddSingleton<SugestaoService>();
 builder.Services.AddTransient<ContentSafetyService>();
+builder.Services.AddScoped<ISugestaoRepository, SugestaoRepository>();
+builder.Services.AddScoped<ISugestaoService, SugestaoService>();
 
 var app = builder.Build();
 
@@ -35,6 +37,8 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 
