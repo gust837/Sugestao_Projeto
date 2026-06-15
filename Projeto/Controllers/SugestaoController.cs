@@ -31,9 +31,11 @@ namespace Projeto.Controllers
         }
 
         [HttpGet]
-        public IActionResult NovaSugestao()
+        public async Task<IActionResult> NovaSugestao()
         {
             if (VerificarSessaoFalse()) return RedirectToAction("Index", "Login");
+
+            ViewBag.Categorias = await _service.ListarCategorias();
 
             return View();
         }

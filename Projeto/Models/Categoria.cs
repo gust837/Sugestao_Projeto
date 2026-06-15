@@ -11,7 +11,7 @@ namespace Projeto.Models
         [StringLength(100)]
         public string Nome { get; set; } = null!;
 
-        public ICollection<Sugestao> Sugestoes { get; set; }= new List<Sugestao>();
+        public ICollection<Sugestao_Categoria> Sugestao_Categorias { get; set; }= new List<Sugestao_Categoria>();
          
     }
 }

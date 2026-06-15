@@ -1,3 +1,8 @@
+@using Projeto.Models
+@section Scripts {
+    <script src="~/js/sugestaoCategoria.js"></script>
+}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,13 +21,15 @@
             <input type="text" name="Descricao">
         </label>
         <label>
-            <select name="StatusSugestao">
-                <option value="A">em andamento</option>
-                <option value="E">em espera</option>
-                <option value="F">finalizado</option>
-                <option value="R">recusado</option>
+            <select id="categoria">
+                <option value="" disabled selected>Selecione</option>
+                @if (ViewBag.Categorias != null) foreach (Categoria c in ViewBag.Categorias)
+                {
+                    <option value="@c.Id">@c.Nome</option>
+                }
             </select>
         </label>
+        <input type="hidden" name="StatusSugestao" value="E"></input>
         <label>
             <select name="Localizacao">
                 <option value="T">terreo</option>

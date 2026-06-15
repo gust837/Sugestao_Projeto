@@ -38,6 +38,6 @@ namespace Projeto.Models
         [ForeignKey("UsuarioId")]
         public Usuario Usuario { get; set; } = null!;
 
-        public ICollection<Categoria> Categorias { get; set; } = new List<Categoria>();
+        public ICollection<Sugestao_Categoria> Sugestao_Categorias { get; set; } = new List<Sugestao_Categoria>();
     }
 }
