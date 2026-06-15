@@ -50,7 +50,11 @@ namespace Projeto.Controllers
             s.DataStatus = DateTime.Today;
             s.DataSugestao = DateTime.Today;
 
-            await _service.CriarSugestao(s, categorias, arquivoImagem);
+            var resultado = await _service.CriarSugestao(s, categorias, arquivoImagem);
+            if (!resultado.Ok)
+                TempData["ErrorMessage"] = resultado.Mensagem;
+            else
+                TempData["SuccessMessage"] = resultado.Mensagem;
             return RedirectToAction("Index", "Feed");
         }
 

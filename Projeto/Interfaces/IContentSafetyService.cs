@@ -8,6 +8,7 @@ namespace Projeto.Interfaces
 {
     public interface IContentSafetyService
     {
-        Task<(bool IsSafe, string Message)> ValidacaoSugestaoAsync(Sugestao sugestao, IFormFile? imagem = null);  
+        Task<(bool IsSafe, string Message)> ValidacaoSugestaoAsync(Sugestao sugestao, IFormFile? imagem = null);
+        Task<(bool IsDuplicate, string Message)> VerificarDuplicidadeAsync(Sugestao novaSugestao, IEnumerable<Sugestao> sugestoesExistentes);
     }
 }

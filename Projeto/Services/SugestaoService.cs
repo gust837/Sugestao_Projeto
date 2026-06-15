@@ -6,61 +6,55 @@ using Projeto.Interfaces;
 using Projeto.Models;
 
 namespace Projeto.Services
-{  
+{
     public class SugestaoService : ISugestaoService
     {
-        private readonly List<Sugestao> _sugestoes = new();
-
-        public IEnumerable<Sugestao> GetAll() => _sugestoes;
-
         private readonly ISugestaoRepository _repository;
+        private readonly IContentSafetyService _contentSafetyService;
 
-        public void Adicionar(Sugestao sugestao)
-        {
-            // sugestao.Id = Guid.NewGuid();
-            _sugestoes.Add(sugestao);
-        }
-
-        public void Remove(int id)
-        {
-            var sugestao = _sugestoes.FirstOrDefault(s => s.Id == id);
-            if (sugestao != null)
-            {
-                _sugestoes.Remove(sugestao);
-            }
-        }
-        public SugestaoService(ISugestaoRepository repository)
+        public SugestaoService(ISugestaoRepository repository, IContentSafetyService contentSafetyService)
         {
             _repository = repository;
+            _contentSafetyService = contentSafetyService;
         }
 
-        public async Task CriarSugestao(Sugestao s, string? categorias, IFormFile arquivoImagem)
+        public async Task<(bool Ok, string Mensagem)> CriarSugestao(Sugestao s, string? categorias, IFormFile? arquivoImagem)
         {
+            var safetyCheck = await _contentSafetyService.ValidacaoSugestaoAsync(s, arquivoImagem);
+            if (!safetyCheck.IsSafe)
+                return (false, safetyCheck.Message);
+
+            var sugestoesExistentes = await _repository.ListarSugestoes();
+            var duplicidadeCheck = await _contentSafetyService.VerificarDuplicidadeAsync(s, sugestoesExistentes);
+            if (duplicidadeCheck.IsDuplicate)
+                return (false, duplicidadeCheck.Message);
+
             if (arquivoImagem != null && arquivoImagem.Length > 0)
-            {
                 s.Imagem = await UploadImagemAsync(arquivoImagem);
-            }
             else
-            {
-                s.Imagem = "";
-            }
+                s.Imagem = string.Empty;
 
             await _repository.CriarSugestao(s);
 
             if (!string.IsNullOrEmpty(categorias))
             {
-                var categoriasIds = categorias.Split(",").Select(id => int.TryParse(id, out var convertido) ? convertido : 0).Where(id => id > 0).ToList();
+                var categoriasIds = categorias
+                    .Split(",")
+                    .Select(id => int.TryParse(id, out var v) ? v : 0)
+                    .Where(id => id > 0)
+                    .ToList();
 
                 foreach (var catId in categoriasIds)
                 {
-                    Sugestao_Categoria sc = new Sugestao_Categoria
+                    await _repository.CriarSugCat(new Sugestao_Categoria
                     {
                         SugestaoId = s.Id,
                         CategoriaId = catId
-                    };
-                    await _repository.CriarSugCat(sc);
+                    });
                 }
             }
+
+            return (true, "Sugestão cadastrada com sucesso!");
         }
 
         public async Task EditarStatusSugestao(int sugId, string status)
@@ -83,7 +77,7 @@ namespace Projeto.Services
                 await _repository.ExcluirSugestao(sug);
             }
         }
-        
+
         public async Task<IEnumerable<Sugestao>> ListarSugestaoPorStatus(string status)
         {
             return await _repository.ListarSugestaoPorStatus(status);

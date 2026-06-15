@@ -121,6 +121,12 @@
                         @* <button class="vote-btn vote-down">
                             <span class="material-symbols-outlined">keyboard_arrow_down</span>
                         </button> *@
+                        <form asp-action="ExcluirSugestao" asp-controller="Feed" method="post">
+                            <input type="hidden" value="@s.Id" name="postId">
+                            <button class="vote-btn vote-delete" type="submit">
+                                <span class="material-symbols-outlined">delete</span>
+                            </button>
+                        </form>
                     </div>
                     <div class="post-content">
                         <div class="post-header">

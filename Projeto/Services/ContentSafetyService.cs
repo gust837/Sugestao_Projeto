@@ -1,10 +1,11 @@
 using Google.GenAI;
 using Google.GenAI.Types;
+using Projeto.Interfaces;
 using Projeto.Models;
 
 namespace Projeto.Services;
 
-public class ContentSafetyService
+public class ContentSafetyService : IContentSafetyService
 {
     private readonly string _apiKey;
 
@@ -88,6 +89,69 @@ Se houver conteúdo ilegal, drogas, armas, exploração infantil, violação de 
         catch (Exception ex)
         {
             return (false, $"Erro na validação de IA: {ex.Message}");
+        }
+    }
+
+    public async Task<(bool IsDuplicate, string Message)> VerificarDuplicidadeAsync(Sugestao novaSugestao, IEnumerable<Sugestao> sugestoesExistentes)
+    {
+        if (string.IsNullOrEmpty(_apiKey))
+            return (false, string.Empty);
+
+        var lista = sugestoesExistentes.ToList();
+        if (!lista.Any())
+            return (false, string.Empty);
+
+        try
+        {
+            var client = new Client(apiKey: _apiKey);
+
+            var sugestoesTexto = string.Join("\n", lista.Select((s, i) =>
+                $"[{i + 1}] Nome: \"{s.Nome}\" | Descrição: \"{s.Descricao}\""));
+
+            var prompt = $@"
+Você é um sistema de detecção de duplicidades em uma plataforma de sugestões institucionais.
+
+Nova sugestão sendo submetida:
+Nome: ""{novaSugestao.Nome}""
+Descrição: ""{novaSugestao.Descricao}""
+
+Sugestões já cadastradas no sistema:
+{sugestoesTexto}
+
+Sua tarefa: verifique se a nova sugestão trata do mesmo problema, porem só verifique caso seja de mesmo local, ou seja, se a sugestão nova e a antiga forem sobre o mesmo tema mas em locais diferentes, considere como única. Se a solução ou melhoria pedida for equivalente e um usuário leria as duas e concluiria que tratam da mesma coisa, considere como duplicada.
+
+Critérios para considerar DUPLICADA:
+- A solução ou melhoria pedida é equivalente
+- Um usuário leria as duas e concluiria que tratam da mesma coisa, caso não seja no mesmo local
+
+Critérios para considerar ÚNICA:
+- Locais diferentes, mesmo que o problema seja parecido ou similar
+- O tema é genuinamente diferente
+- Pode ser complementar, mas não idêntico em propósito
+
+Responda APENAS em um dos dois formatos abaixo, sem explicações adicionais:
+UNICA
+DUPLICADA: [número da sugestão similar entre colchetes, ex: 3] - [nome exato da sugestão similar]";
+
+            var response = await client.Models.GenerateContentAsync(
+                model: "gemini-2.5-flash-lite",
+                contents: prompt
+            );
+
+            var responseText = response.Text?.Trim() ?? string.Empty;
+
+            if (responseText.StartsWith("DUPLICADA", StringComparison.OrdinalIgnoreCase))
+            {
+                var detalhes = responseText.Substring("DUPLICADA".Length).Trim(':', ' ');
+                return (true, $"Já existe uma sugestão semelhante cadastrada: {detalhes}. Por favor, vote na sugestão existente em vez de criar uma nova.");
+            }
+
+            return (false, string.Empty);
+        }
+        catch (Exception ex)
+        {
+            // Fail-open: se a IA falhar, permite a submissão
+            return (false, $"Aviso: verificação de duplicidade indisponível ({ex.Message})");
         }
     }
 }

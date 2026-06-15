@@ -153,9 +153,7 @@ C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\rjimswa.
 C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
 C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\scopedcss\bundle\Projeto.styles.css
-C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\7ui2llpeqd-{0}-b9sayid5wm-b9sayid5wm.gz
 C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\90bvmojewl-{0}-61n19gt1b8-61n19gt1b8.gz
-C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\nt7u91hi3m-{0}-mwl7q7g8g1-mwl7q7g8g1.gz
 C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\2oxohpb3fa-{0}-t1cqhe9u97-t1cqhe9u97.gz
 C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\o3hibig160-{0}-c2jlpeoesf-c2jlpeoesf.gz
 C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\u7n0kvt7tf-{0}-sejl45xvog-sejl45xvog.gz
@@ -226,3 +224,9 @@ C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\refint\P
 C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\Projeto.pdb
 C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\Projeto.genruntimeconfig.cache
 C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\ref\Projeto.dll
+C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\necipcz6ie-{0}-7ucgd369b6-7ucgd369b6.gz
+C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\umxswdfs91-{0}-4x1calsl1n-4x1calsl1n.gz
+C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\34yjxh32q5-{0}-cmzj0dotrk-cmzj0dotrk.gz
+C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\smveabck7j-{0}-fsvtzgot78-fsvtzgot78.gz
+C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\nt7u91hi3m-{0}-yriqb449vx-yriqb449vx.gz
+C:\Users\54166966804\Desktop\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\kyilc3kdv8-{0}-nccpqyuull-nccpqyuull.gz

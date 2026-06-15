@@ -20,8 +20,7 @@ builder.Services.AddSession(options => {
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
-builder.Services.AddSingleton<SugestaoService>();
-builder.Services.AddTransient<ContentSafetyService>();
+builder.Services.AddScoped<IContentSafetyService, ContentSafetyService>();
 builder.Services.AddScoped<ISugestaoRepository, SugestaoRepository>();
 builder.Services.AddScoped<ISugestaoService, SugestaoService>();
 

@@ -5,7 +5,7 @@ namespace Projeto.Interfaces
 {
     public interface ISugestaoService
     {
-        Task CriarSugestao(Sugestao s, string? categorias, IFormFile arquivoImagem);
+        Task<(bool Ok, string Mensagem)> CriarSugestao(Sugestao s, string? categorias, IFormFile? arquivoImagem);
 
         Task ExcluirSugestao(int sugId);
 
