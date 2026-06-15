@@ -61,6 +61,7 @@ namespace Projeto.Services
             {
                 await _repository.ExcluirSugCat(sugId);
                 await _repository.ExcluirVotos(sugId);
+                await _repository.ExcluirComentarios(sugId);
                 await _repository.ExcluirSugestao(sug);
             }
         }
