@@ -99,7 +99,7 @@ body {
 }
 
 /* Botão principal de ação */
-.btn-cta {
+.a-cta {
     width: 100%;
     background-color: var(--primary);
     color: var(--title);

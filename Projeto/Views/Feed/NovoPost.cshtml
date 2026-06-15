@@ -1,53 +1,108 @@
 @using Projeto.Models
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Postar SEMC</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+          integrity="sha512-XcIsjKMcuVe0Ucj/xgIXQnytNwBttJbNjltBV18IOnru2lDPe9KRRyvCXw6Y5H415vbBLRm8+q6fmLUU7DfO6Q=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
     <link rel="stylesheet" href="~/css/postar.css">
 </head>
 
 <body>
-    <section class="postar">
-        <form method="post" asp-action="NovoPost" asp-controller="Feed">
-            <div class="postar_box_area">
-                <span class="placeholder">O que podemos melhorar?</span>
-                <label>
-                    <input type="text" name="Nome">
-                </label>
-                <label>
-                    <input type="text" name="Descricao">
-                </label>
-                <input type="hidden" name="StatusSugestao" value="E">
-            </div>
-            <nav class="footer_box">
-                <ul class="footer_categorias">
-                    <select name="Categorias" id="">
-                        <option value="" disabled selected>Selecione</option>
-                        @if (ViewBag.Categorias != null) foreach (Categoria c in ViewBag.Categorias)
-                        {
-                            <option value="@c.Id">@c.Nome</option>
-                        }
-                    </select>
+    <div class="app-wrapper">
+        <main class="main-content">
+            <div class="content-canvas">
 
-                    <select name="Localizacao" id="">
-                        <option value="" selected disabled>Local</option>
-                        <option value="1">1° Andar</option>
-                        <option value="2">2° Andar</option>
-                        <option value="C">Cowork</option>
-                        <option value="B">Biblioteca</option>
-                        <option value="R">Refeitório</option>
-                    </select>
-                </ul>
-            </nav>
-            <div class="limiteCaracteres">
-                <button type="submit" class="post_btn">Post</button>
-            </div>
-        </form>
-    </section>
-</body>
+                <section class="postar create-post-card">
+                    <div class="card-gradient-border"></div>
+
+                    <div class="card-header">
+                        <h2>O que podemos melhorar?</h2>
+                        <p>Detalhe o problema para que possamos resolvê-lo rapidamente.</p>
+                    </div>
+
+                    <form method="post" asp-action="NovoPost" asp-controller="Feed" class="post-form">
+
+                        <div class="postar_box_area form-fields">
+                            <div class="form-group">
+                                <label for="Nome">Título</label>
+                                <input type="text" id="Nome" name="Nome" class="form-control"
+                                       placeholder="Título do problema" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Descricao">Descrição</label>
+                                <textarea id="Descricao" name="Descricao" class="form-control"
+                                          placeholder="Descreva aqui o problema ou adversidade encontrada..." rows="5"
+                                          required></textarea>
+                            </div>
+
+                            <input type="hidden" name="StatusSugestao" value="E">
+                        </div>
+
+                        <nav class="footer_box">
+                            <div class="footer_categorias form-grid">
+
+                                <div class="form-group relative">
+                                    <label for="Categorias">Categoria</label>
+                                    <div class="select-wrapper">
+                                        <select name="Categorias" id="Categorias" class="form-control select-control"
+                                                required>
+                                            <option value="" disabled selected>Selecione</option>
+                                            @if (ViewBag.Categorias != null)
+                                            {
+                                                foreach (Categoria c in ViewBag.Categorias)
+                                                {
+                                                    <option value="@c.Id">@c.Nome</option>
+                                                }
+                                            }
+                                            *
+                                        </select>
+                                        <span class="material-symbols-outlined select-icon">expand_more</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group relative">
+                                    <label for="Localizacao">Local</label>
+                                    <div class="select-wrapper">
+                                        <select name="Localizacao" id="Localizacao" class="form-control select-control"
+                                                required>
+                                            <option value="" selected disabled>Local</option>
+                                            <option value="1">1° Andar</option>
+                                            <option value="2">2° Andar</option>
+                                            <option value="C">Cowork</option>
+                                            <option value="B">Biblioteca</option>
+                                            <option value="R">Refeitório</option>
+                                        </select>
+                                        <span class="material-symbols-outlined select-icon">expand_more</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </nav>
+
+                        <div class="limiteCaracteres form-actions">
+                            <a asp-action="Index" asp-controller="Feed" method="post" class="btn-back"><i
+                                class="ri-arrow-left-line"></i></a>
+
+                                <button type="submit" class="post_btn btn-submit">Postar Publicação</button>
+                            </div>
+                        </form>
+                    </section>
+
+                </div>
+            </main>
+        </div>
+    </body>
 
 </html>
