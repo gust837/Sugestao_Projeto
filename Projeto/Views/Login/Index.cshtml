@@ -13,7 +13,7 @@
                 <div class="login_content">
                     <div>
                         <h2 class="login_title">Bem-vindo</h2>
-                        <form action="" method="post" class="login_form">
+                        <form asp-action="Logar" asp-controller="Login" method="post" class="login_form">
                             <div class="login_group">
                                 <div class="login_box">
                                     <i class="ri-mail-fill login_icon"></i>
@@ -23,9 +23,8 @@
     
                                 <div class="login_box">
                                     <i class="ri-lock-2-fill login_icon"></i>
-                                    <input type="password" name="senha" autocomplete="senha-atual" required placeholder="" class="login_input" id="senha">
+                                    <input type="senha" name="senha" autocomplete="senha-atual" required placeholder="" class="login_input" id="senha">
                                     <label for="senha" class="login_label">Senha</label>
-                                    <i class="ri-eye-line login_senha" id="btn_senha" onclick="mostrarSenha()"></i>
                                 </div>
     
                             </div>

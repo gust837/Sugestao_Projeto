@@ -27,23 +27,13 @@
 </head>
 
 <body>
-    @{
-        string? controllerAtual = ViewContext.RouteData.Values["Controller"]?.ToString();
 
-        bool mostrarHeaderFooter = controllerAtual == "Home" || controllerAtual == "Login" || string.IsNullOrEmpty(controllerAtual);
-    }
-
-    @if(mostrarHeaderFooter)
-        {
-            
-        }
-        <main role="main">
+    <main role="main">
         @RenderBody()
     </main>
 
-@if(mostrarHeaderFooter){
-  }
-    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required:false)
+
 </body>
 
 </html>

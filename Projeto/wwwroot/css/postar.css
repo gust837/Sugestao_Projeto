@@ -61,7 +61,7 @@ html, body{
     list-style: none;
 }
 
-.footer_icons li{
+.footer_categoria li{
     margin: 20px 5px;
     position: relative;
     right: 8px;
@@ -74,7 +74,7 @@ html, body{
     cursor: pointer;
 }
 
-.footer_icons li i{
+.footer_categoria li i{
     padding: 10px;
     -webkit-border-radius: 0.3s;
     -moz-border-radius: 0.3s;
@@ -89,6 +89,8 @@ html, body{
 }
 
 .post_btn{
+    float: right;
+    transform: translateY(-3.3rem);
     background-color: #1da1f1;
     color: white;
     cursor: pointer;
@@ -97,6 +99,4 @@ html, body{
     border: transparent;
     font-size: 100%;
 }
-
-
 
