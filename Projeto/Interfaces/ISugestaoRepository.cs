@@ -26,6 +26,8 @@ namespace Projeto.Interfaces
 
         Task<bool> VerificarUsuarioVoto(int usuarioId, int postId);
 
+        Task<IEnumerable<int>> ListarVotosDoUsuario(int usuarioId);
+
         Task<Sugestao?> ProcurarSugestao(int sugId);
 
         Task Votar(Sugestao s, Usuario_Voto uv);

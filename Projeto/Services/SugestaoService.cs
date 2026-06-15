@@ -114,5 +114,15 @@ namespace Projeto.Services
 
             return $"img/imgSugestoes/{nomeArquivo}";
         }
+
+        public async Task<bool> VerificarUsuarioVoto(int usuarioId, int postId)
+        {
+            return await _repository.VerificarUsuarioVoto(usuarioId, postId);
+        }
+
+        public async Task<IEnumerable<int>> ListarVotosUsuario(int usuarioId)
+        {
+            return await _repository.ListarVotosDoUsuario(usuarioId);
+        }
     }
 }

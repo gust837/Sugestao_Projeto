@@ -53,7 +53,32 @@ function excluirCat(id) {
     renderizarItens();
 }
 
-if(botaoInserir) {
+if (botaoInserir) {
     botaoInserir.addEventListener("click", adicionarCat);
     renderizarItens();
+}
+
+// ======================================================= LÓGICA DE BUSCA =======================================================
+const inputBusca = document.getElementById('inputBusca'); // Pega o input da tela
+const cardsSugestoes = document.querySelectorAll('.post-card'); // Pega todos os artigos/cards gerados pelo foreach
+
+if (inputBusca) { // Verifica se o input de busca existe
+    inputBusca.addEventListener('input', function () { 
+        const termo = this.value.toLowerCase(); // Converte a busca para minúsculo
+
+        cardsSugestoes.forEach(card => { 
+            // Extrai o texto dos elementos de cada card usando as classes do seu HTML
+            const titulo = card.querySelector('.post-title')?.textContent.toLowerCase() || '';
+            const detalhes = card.querySelector('.post-meta')?.textContent.toLowerCase() || ''; // Pega autor, tempo e categorias juntos
+            const status = card.querySelector('.status-pill')?.textContent.toLowerCase() || '';
+            const descricao = card.querySelector('.post-body')?.textContent.toLowerCase() || '';
+
+            // Verifica se o termo digitado está incluso em alguma das partes do card
+            if (titulo.includes(termo) || detalhes.includes(termo) || status.includes(termo) || descricao.includes(termo)) { 
+                card.style.display = ''; // Mostra o card se encontrar o termo
+            } else {
+                card.style.display = 'none'; // Esconde o card se não encontrar
+            }
+        });
+    });
 }

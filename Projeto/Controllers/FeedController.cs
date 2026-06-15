@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticAssets;
 using Projeto.Interfaces;
 using Projeto.Models;
 
@@ -27,6 +28,13 @@ namespace Projeto.Controllers
         public async Task<IActionResult> Index()
         {
             if (VerificarSessaoFalse()) return RedirectToAction("Index", "Login");
+
+            ViewBag.Admin = !VerificarSessaoAdminFalse();
+
+            int.TryParse(HttpContext.Session.GetString("UsuarioId"), out int usuarioId);
+            var votosUsuario = await _service.ListarVotosUsuario(usuarioId);
+            ViewBag.VotosUsuario = new HashSet<int>(votosUsuario);
+
             return View(await _service.ListarSugestoes());
         }
 
@@ -80,6 +88,12 @@ namespace Projeto.Controllers
             int.TryParse(HttpContext.Session.GetString("UsuarioId"), out int usuarioId);
             await _service.Votar(usuarioId, postId);
             return RedirectToAction("Index", "Feed");
+        }
+
+        public async Task<bool> VerificarUsuarioVoto(int postId)
+        {
+            int.TryParse(HttpContext.Session.GetString("UsuarioId"), out int usuarioId);
+            return await _service.VerificarUsuarioVoto(usuarioId, postId);
         }
     }
 }

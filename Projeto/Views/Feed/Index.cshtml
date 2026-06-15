@@ -1,4 +1,9 @@
-﻿@using Projeto.Models
+﻿@using Microsoft.VisualBasic
+@using Projeto.Controllers
+@using Projeto.Models
+@{
+    var votosUsuario = (HashSet<int>)(ViewBag.VotosUsuario ?? new HashSet<int>());
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,8 +15,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+          integrity="sha512-XcIsjKMcuVe0Ucj/xgIXQnytNwBttJbNjltBV18IOnru2lDPe9KRRyvCXw6Y5H415vbBLRm8+q6fmLUU7DfO6Q=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="~/js/sugestaoCategoria.js"></script>
 
     <link rel="stylesheet" href="~/css/main.css">
+
 </head>
 
 <body>
@@ -19,6 +29,9 @@
     <nav class="navbar">
         <div class="navbar-logo">
             <span class="logo-text">SEMC</span>
+        </div>
+        <div class="busca_container">
+            <input type="text" id="inputBusca" placeholder="Buscar por título, categoria ou status..." />
         </div>
         <div class="navbar-actions">
             <button class="btn-icon">
@@ -90,13 +103,28 @@
 
             @foreach (Sugestao s in Model)
             {
+                
                 string categorias = string.Join(" • ", s.Sugestao_Categorias.Select(c => c.Categoria.Nome));
                 string statusNome = "";
+                string statusCss = "";
+                string classeIcone = "";
 
-                if (s.StatusSugestao == "A") statusNome = "Em andamento";
-                else if (s.StatusSugestao == "E") statusNome = "Em espera";
-                else if (s.StatusSugestao == "F") statusNome = "Feito";
-                else if (s.StatusSugestao == "R") statusNome = "Recusado";
+                if (s.StatusSugestao == "A")
+                {
+                    statusNome = "Em andamento"; statusCss = "in-progress"; classeIcone = "ri-hammer-fill";
+                }
+                else if (s.StatusSugestao == "E")
+                {
+                    statusNome = "Em espera"; statusCss = "waiting"; classeIcone = "ri-loader-3-line";
+                }
+                else if (s.StatusSugestao == "F")
+                {
+                    statusNome = "Feito"; statusCss = "resolved"; classeIcone = "ri-check-line";
+                }
+                else if (s.StatusSugestao == "R")
+                {
+                    statusNome = "Recusado"; statusCss = "refused"; classeIcone = "ri-close-line";
+                }
 
                 TimeSpan diferenca = DateTime.Now - s.DataSugestao;
                 string tempoTexto = "";
@@ -109,11 +137,11 @@
                 else if (diferenca.TotalDays < 365) tempoTexto = $"{(int)(diferenca.TotalDays / 30)} mês";
                 else tempoTexto = $"{(int)(diferenca.TotalDays / 365)} ano(s)";
 
-                <article class="post-card">
+                <article class="post-card" data-titulo="@s.Nome" data-categoria="@categorias" data-status="@statusNome">
                     <div class="vote-sidebar">
                         <form asp-action="Votar" asp-controller="Feed" method="post">
                             <input type="hidden" value="@s.Id" name="postId">
-                            <button class="vote-btn vote-up" type="submit">
+                            <button class="vote-btn vote-up @(votosUsuario.Contains(s.Id) ? "active" : string.Empty)" type="submit">
                                 <span class="material-symbols-outlined">keyboard_arrow_up</span>
                             </button>
                         </form>
@@ -134,8 +162,23 @@
                                 </div>
                                 <h3 class="post-title">@s.Nome</h3>
                             </div>
-                            <span class="status-pill reported">
-                                <span class="material-symbols-outlined">report</span> @statusNome
+                            <span class="status-pill @statusCss">
+                                <i class="material-symbols-outlined @classeIcone"></i> @statusNome
+                                @if (ViewBag.Admin)
+                                {
+                                    <form method="post" asp-action="EditarSugestao" asp-controller="Feed">
+                                        <input type="hidden" value="@s.Id" name="id">
+                                        <label for="status">
+                                            <select name="status">
+                                                <option value="A">em andamento</option>
+                                                <option value="E">em espera</option>
+                                                <option value="F">finalizado</option>
+                                                <option value="R">recusado</option>
+                                            </select>
+                                        </label>
+                                        <button type="submit">confirmar edição</button>
+                                    </form>
+                                }
                             </span>
                         </div>
                         <p class="post-body">

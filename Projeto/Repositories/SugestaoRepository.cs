@@ -77,6 +77,14 @@ namespace Projeto.Repositories
             return await _context.Usuario_Voto.FirstOrDefaultAsync(uv => uv.UsuarioId == usuarioId && uv.SugestaoId == postId) != null;
         }
 
+        public async Task<IEnumerable<int>> ListarVotosDoUsuario(int usuarioId)
+        {
+            return await _context.Usuario_Voto
+                .Where(uv => uv.UsuarioId == usuarioId)
+                .Select(uv => uv.SugestaoId)
+                .ToListAsync();
+        }
+
         public async Task<Sugestao?> ProcurarSugestao(int sugId)
         {
             return await _context.Sugestao.FirstOrDefaultAsync(s => s.Id == sugId);
