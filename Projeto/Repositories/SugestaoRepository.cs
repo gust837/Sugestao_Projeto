@@ -64,7 +64,7 @@ namespace Projeto.Repositories
 
         public async Task<IEnumerable<Sugestao>> ListarSugestoes()
         {
-            return await _context.Sugestao.Include(s => s.Sugestao_Categorias).ThenInclude(sg => sg.Categoria).OrderByDescending(r => r.Votos).ToListAsync();
+            return await _context.Sugestao.Include(s => s.Sugestao_Categorias).ThenInclude(sg => sg.Categoria).Include(s => s.Usuario).OrderByDescending(r => r.Votos).ToListAsync();
         }
 
         public async Task<IEnumerable<Categoria>> ListarCategorias()

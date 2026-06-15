@@ -4,11 +4,11 @@ using Projeto.Models;
 
 namespace Projeto.Controllers
 {
-    public class SugestaoController : Controller
+    public class FeedController : Controller
     {
         private readonly ISugestaoService _service;
 
-        public SugestaoController(ISugestaoService service)
+        public FeedController(ISugestaoService service)
         {
             _service = service;
         }
@@ -31,7 +31,7 @@ namespace Projeto.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> NovaSugestao()
+        public async Task<IActionResult> NovoPost()
         {
             if (VerificarSessaoFalse()) return RedirectToAction("Index", "Login");
 
@@ -41,7 +41,7 @@ namespace Projeto.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> NovaSugestao(Sugestao s, string? categorias, IFormFile arquivoImagem)
+        public async Task<IActionResult> NovoPost(Sugestao s, string? categorias, IFormFile arquivoImagem)
         {
             if (VerificarSessaoFalse()) return RedirectToAction("Index", "Login");
 
@@ -51,7 +51,7 @@ namespace Projeto.Controllers
             s.DataSugestao = DateTime.Today;
 
             await _service.CriarSugestao(s, categorias, arquivoImagem);
-            return RedirectToAction("Index", "Sugestao");
+            return RedirectToAction("Index", "Feed");
         }
 
         [HttpPost]
@@ -61,7 +61,7 @@ namespace Projeto.Controllers
 
             await _service.EditarStatusSugestao(id, status);
 
-            return RedirectToAction("Index", "Sugestao");
+            return RedirectToAction("Index", "Feed");
         }
 
         [HttpPost]
@@ -71,7 +71,7 @@ namespace Projeto.Controllers
 
             await _service.ExcluirSugestao(id);
 
-            return RedirectToAction("Index", "Sugestao");
+            return RedirectToAction("Index", "Feed");
         }
 
         [HttpPost]
@@ -79,7 +79,7 @@ namespace Projeto.Controllers
         {
             int.TryParse(HttpContext.Session.GetString("UsuarioId"), out int usuarioId);
             await _service.Votar(usuarioId, postId);
-            return RedirectToAction("Index", "Sugestao");
+            return RedirectToAction("Index", "Feed");
         }
     }
 }
