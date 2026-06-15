@@ -1,5 +1,5 @@
+/* Animação de entrada do login */
 document.addEventListener("DOMContentLoaded", (event) => {
-    // gsap code here!
     const tl = gsap.timeline({})
 
     tl.fromTo(

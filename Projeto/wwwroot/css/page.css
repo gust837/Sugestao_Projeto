@@ -1,0 +1,14 @@
+/* =============================================
+   page.css — Reset e base global
+   ============================================= */
+
+body {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    padding-top: 56px; /* Compensa o header fixo */
+    background-color: rgb(250, 250, 250);
+}
+
+img {
+    vertical-align: bottom;
+}
