@@ -1,5 +1,5 @@
+/* Animação de entrada do login */
 document.addEventListener("DOMContentLoaded", (event) => {
-    // gsap code here!
     const tl = gsap.timeline({})
 
     tl.fromTo(
@@ -52,8 +52,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     )
     gsap.defaults({opacity: 0, y: -60, ease: 'power2.out', duration: 1.2})
     gsap.from('.login_title', {delay: 2.5})
-    gsap.from('.login_form > *', {delay: 2.7, stagger: .2})
-    gsap.from('.login', {y: 0, x: 100, delay: 3.2, ease: 'elastic.out(1,0.6)'})
-});
-
-
+    gsap.from('.login_form > *', {delay: 2.7, stagger: .2} )
+    gsap.from('.login_img', {y: 0, x: 100, delay: 3.2, ease: 'elastic.out(1,0.6)'})
+})
