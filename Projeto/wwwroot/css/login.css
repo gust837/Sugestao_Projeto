@@ -127,6 +127,11 @@ img {
     height: 1rem;
 }
 
+#btn_senha{
+    font-size: 1.2rem;
+    width: 15%;
+}
+
 .login_label{
     position: absolute;
     left: 3.5rem;
@@ -151,6 +156,7 @@ img {
 .login_input:autofill{
     transition: background-color 6000s, color 6000s;
 }
+
 
 .login_forgot{
     display: block;
@@ -231,4 +237,7 @@ img {
     }
 }
 
-/* For large devices <> */
+
+@view-transition{
+    navigation: auto
+}

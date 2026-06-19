@@ -401,3 +401,7 @@ img {
     gap: 1.5rem;
   }
 }
+
+@view-transition{
+    navigation: auto
+}

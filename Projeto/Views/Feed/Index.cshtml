@@ -10,11 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+          integrity="sha512-XcIsjKMcuVe0Ucj/xgIXQnytNwBttJbNjltBV18IOnru2lDPe9KRRyvCXw6Y5H415vbBLRm8+q6fmLUU7DfO6Q=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="~/css/main.css">
-    @{ Layout = null; }
-...
-<link rel="stylesheet" href="~/css/main.css">
+    <script src="~/js/editar.js"></script>
+    @{
+        Layout = null;
+    }
 <link rel="stylesheet" href="~/css/feed.css">
 </head>
 
@@ -26,7 +29,7 @@
         </div>
         <div class="navbar-actions">
             <button class="btn-icon">
-                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+                <i class="ri-logout-circle-line"></i>
             </button>
         </div>
     </nav>
@@ -41,27 +44,73 @@
 
             <div class="filter-menu">
                 <div class="filter-header">
-                    <h2>Filter by Status</h2>
-                    <p>Track feedback progress</p>
+                    <h2>Filtro por status</h2>
                 </div>
                 <nav class="filter-nav">
-                    <button class="filter-btn"
-                            onclick="document.querySelectorAll('article').forEach(a => a.style.display = a.innerText.includes('Reported') ? 'flex' : 'none')">
-                        <span class="material-symbols-outlined text-red">report</span>
-                        <span class="filter-label">Reported</span>
-                        <span class="badge">12</span>
+                    <button class="filter-btn" id="fe">
+                        <i class="ri-check-fill" id="f"></i>
+                        <span class="filter-label">Feito</span>
+                    </button> 
+                    <button class="filter-btn" id="ea">
+                        <i class="ri-loader-4-fill" id="a"></i>
+                        <span class="filter-label">Em andamento</span>
                     </button>
-                    <button class="filter-btn"
-                            onclick="document.querySelectorAll('article').forEach(a => a.style.display = a.innerText.includes('In Progress') ? 'flex' : 'none')">
-                        <span class="material-symbols-outlined text-yellow">pending_actions</span>
-                        <span class="filter-label">In Progress</span>
-                        <span class="badge">5</span>
+                    <button class="filter-btn" id="ee">
+                        <i class="ri-time-line" id="e"></i>
+                        <span class="filter-label">Em espera</span>
                     </button>
-                    <button class="filter-btn"
-                            onclick="document.querySelectorAll('article').forEach(a => a.style.display = a.innerText.includes('Resolved') ? 'flex' : 'none')">
-                        <span class="material-symbols-outlined text-green">check_circle</span>
-                        <span class="filter-label">Resolved</span>
-                        <span class="badge">28</span>
+                    <button class="filter-btn" id="re">
+                        <i class="ri-error-warning-line" id="r"></i>
+                        <span class="filter-label">Recusado</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="filter-menu">
+                <div class="filter-header">
+                    <h2>Filtro por Local</h2>
+                </div>
+                <nav class="filter-nav">
+                    <button class="filter-btn" id="aa1">
+                        <i class="ri-map-pin-line" id="a1"></i>
+                        <span class="filter-label">1 andar</span>
+                    </button>
+                    <button class="filter-btn" id="aa2">
+                        <i class="ri-pin-distance-line" id="a2"></i>
+                        <span class="filter-label">2 andar</span>
+                        
+                    </button>
+                    <button class="filter-btn" id="c">
+                       <i class="ri-ping-pong-line" id="cow"></i>
+                        <span class="filter-label">Cowork</span>
+                    </button>
+                    <button class="filter-btn" id="refe">
+                        <i class="ri-restaurant-line" id="ref"></i>
+                        <span class="filter-label">Refeitorio</span>
+                    </button>
+                    <button class="filter-btn" id="b">
+                       <i class="ri-book-shelf-line" id="bibi"></i>
+                        <span class="filter-label">Biblioteca</span>
+                    </button>
+                </nav>
+            </div>
+
+            <div class="filter-menu">
+                <div class="filter-header">
+                    <h2>Filtro por categoria</h2>
+                </div>
+                <nav class="filter-nav">
+                    <button class="filter-btn" id="s">
+                       <i class="ri-service-line" id="sus"></i>
+                        <span class="filter-label">Sustentabilidade</span>
+                    </button>
+                    <button class="filter-btn" id="t">
+                        <i class="ri-bug-line" id="tec"></i>
+                        <span class="filter-label">Tecnologia</span>
+                    </button>
+                    <button class="filter-btn" id="i">
+                        <i class="ri-building-line" id="infra"></i>
+                        <span class="filter-label">Infraestrutura</span>
                     </button>
                 </nav>
             </div>
@@ -138,9 +187,19 @@
                                 </div>
                                 <h3 class="post-title">@s.Nome</h3>
                             </div>
-                            <span class="status-pill reported">
-                                <span class="material-symbols-outlined">report</span> @statusNome
-                            </span>
+                            <div class="editar">
+                                <button onclick="esconder(this)" class="status-pill" id="admin">
+                                    <span class="ri-check-line"></span> @statusNome
+                                </button>
+                                <div class="edicao status-panel"><select name="trocar"> 
+                                    <option value="" selected disabled>Status</option>
+                                    <option value="R">Recusado</option>
+                                    <option value="F">Feito</option>
+                                    <option value="E">Em espera</option>
+                                    <option value="A">Em andamento</option>
+                                </select>
+                            </div>
+                        </div>
                         </div>
                         <p class="post-body">
                             @s.Descricao
@@ -149,12 +208,23 @@
                             <button class="btn-action">
                                 <span class="material-symbols-outlined">chat_bubble</span> 42 Comments
                             </button>
+                        <button class="btn-action salvar-btn">
+                            <span class="ri-check-line"></span>
+                        </button>
+                        <button class="btn-action excluir-btn">
+                            <i class="ri-delete-bin-line"></i>
+                        </button>
                         </div>
                     </div>
                 </article>
             }
 
             <div class="loading-container">
+                <span class="material-symbols-outlined animate-spin">autorenew</span>
+            </div>
+        </main>
+    </div>
+-container">
                 <span class="material-symbols-outlined animate-spin">autorenew</span>
             </div>
         </main>

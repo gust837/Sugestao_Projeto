@@ -271,3 +271,35 @@ textarea.form-control {
     text-decoration: none;
     color: var(--primary-hover);
 }
+
+.btn-back:hover {
+    transform: translateY(-2px);
+}
+
+
+@view-transition{
+    navigation: auto
+}
+
+@keyframes entrar{
+    from{
+        transform: translateY(100%);
+    }
+}
+
+@keyframes sair{
+    to{
+        transform: translateY(100%);
+    }
+}
+
+::view-transition-group(root){
+    animation-duration: 1s;
+}
+
+::view-transition-new(root){
+    animation-name: entrar;
+}
+::view-transition-old(root){
+    animation-name: sair;
+}

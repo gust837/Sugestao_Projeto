@@ -55,21 +55,3 @@ document.addEventListener("DOMContentLoaded", (event) => {
     gsap.from('.login_form > *', {delay: 2.7, stagger: .2} )
     gsap.from('.login_img', {y: 0, x: 100, delay: 3.2, ease: 'elastic.out(1,0.6)'})
 })
-
-/* Função de mostrar a senha */
-function mostrarSenha(){
-    var inputPass = document.getElementById('senha')
-    var btnShowPass = document.getElementById('btn_senha')
-
-    if (inputPass.type === 'password') 
-    {
-        inputPass.setAttribute('type', 'text')
-        btnShowPass.classList.replace('ri-eye-line', 'ri-eye-off-line')
-    }
-
-    else
-    {
-        inputPass.setAttribute('type', 'password')
-        btnShowPass.classList.replace('ri-eye-off-line', 'ri-eye-line')
-    }
-} 
