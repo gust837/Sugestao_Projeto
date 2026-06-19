@@ -3090,24 +3090,31 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Gustavo\\.nuget\\packages\\": {}
+    "C:\\Users\\52663088854\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Gustavo\\Downloads\\Sugestao_Projeto-html-css\\Projeto\\Projeto.csproj",
+      "projectUniqueName": "C:\\Users\\52663088854\\Documents\\Sugestao_Projeto\\Projeto\\Projeto.csproj",
       "projectName": "Projeto",
-      "projectPath": "C:\\Users\\Gustavo\\Downloads\\Sugestao_Projeto-html-css\\Projeto\\Projeto.csproj",
-      "packagesPath": "C:\\Users\\Gustavo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gustavo\\Downloads\\Sugestao_Projeto-html-css\\Projeto\\obj\\",
+      "projectPath": "C:\\Users\\52663088854\\Documents\\Sugestao_Projeto\\Projeto\\Projeto.csproj",
+      "packagesPath": "C:\\Users\\52663088854\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\52663088854\\Documents\\Sugestao_Projeto\\Projeto\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Gustavo\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\52663088854\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

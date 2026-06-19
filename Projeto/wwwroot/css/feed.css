@@ -142,6 +142,39 @@ body {
     box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--primary-container);
 }
 
+/* Botão flutuante de Criar Post (estilo Twitter/X) - aparece apenas no mobile,
+   já que o botão "Create New Post" da sidebar fica oculto em telas pequenas */
+.mobile-fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-full);
+    background-color: var(--primary-container);
+    color: var(--on-primary-container);
+    box-shadow: 0 8px 20px rgba(104, 44, 201, 0.45);
+    text-decoration: none;
+    z-index: 80;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.mobile-fab .material-symbols-outlined {
+    font-size: 28px;
+}
+
+.mobile-fab:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.05);
+}
+
+.mobile-fab:active {
+    transform: scale(0.92);
+}
+
 
 /* Caixa de Menu de Filtros */
 .filter-menu {
@@ -481,6 +514,15 @@ body {
     gap: 8px;
 }
 
+.post-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.editar {
+    flex-shrink: 0;
+}
+
 .post-meta {
     display: flex;
     align-items: center;
@@ -610,22 +652,28 @@ option{
     border: 1px solid transparent;
 }
 
-.status-pill.reported {
-    background-color: rgba(239, 68, 68, 0.2);
-    color: #ef4444;
-    border-color: rgba(239, 68, 68, 0.5);
-}
-
-.status-pill.in-progress {
+.status-pill.status-andamento {
     background-color: rgba(234, 179, 8, 0.2);
     color: #eab308;
     border-color: rgba(234, 179, 8, 0.5);
 }
 
-.status-pill.resolved {
+.status-pill.status-espera {
+    background-color: rgba(55, 92, 216, 0.2);
+    color: rgb(55, 92, 216);
+    border-color: rgba(55, 92, 216, 0.5);
+}
+
+.status-pill.status-feito {
     background-color: rgba(34, 197, 94, 0.2);
     color: #22c55e;
     border-color: rgba(34, 197, 94, 0.5);
+}
+
+.status-pill.status-recusado {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.5);
 }
 
 /* Spinner de Carregamento */
@@ -678,6 +726,135 @@ option{
     }
     .mobile-filters {
         display: none;
+    }
+    .mobile-fab {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE PARA CELULARES PEQUENOS (até 480px, incluindo 375px)
+   ========================================================================== */
+@media (max-width: 480px) {
+    body {
+        padding-top: 56px;
+    }
+
+    .navbar {
+        height: 56px;
+        padding: 0 16px;
+    }
+
+    .logo-text {
+        font-size: 19px;
+    }
+
+    .btn-icon {
+        font-size: 1.4rem;
+        padding: 6px;
+    }
+
+    .main-layout {
+        padding: 16px 12px 96px;
+        gap: 16px;
+    }
+
+    .mobile-filters {
+        gap: 6px;
+    }
+
+    .mobile-filter-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+
+    .post-card {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .vote-sidebar {
+        padding: 2px;
+    }
+
+    .vote-btn .material-symbols-outlined {
+        font-size: 20px;
+    }
+
+    .vote-count {
+        font-size: 12px;
+    }
+
+    .post-title {
+        font-size: 15px;
+    }
+
+    .post-meta {
+        font-size: 11px;
+        gap: 6px;
+    }
+
+    .post-body {
+        font-size: 13px;
+    }
+
+    .status-pill {
+        font-size: 10px;
+        padding: 4px 10px;
+    }
+
+    .post-actions {
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    .btn-action {
+        font-size: 11px;
+        padding: 4px 6px;
+    }
+
+    .filter-menu {
+        padding: 12px;
+        margin-top: 16px;
+    }
+
+    .mobile-fab {
+        width: 48px;
+        height: 48px;
+        bottom: 16px;
+        right: 16px;
+    }
+
+    .mobile-fab .material-symbols-outlined {
+        font-size: 24px;
+    }
+}
+
+/* Ajustes finos para telas bem estreitas (iPhone SE / 375px e menores) */
+@media (max-width: 375px) {
+    .main-layout {
+        padding: 12px 8px 96px;
+    }
+
+    .post-card {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .post-title {
+        font-size: 14px;
+    }
+
+    .post-body {
+        font-size: 12.5px;
+    }
+
+    .post-meta {
+        gap: 4px;
+    }
+
+    .footer-links {
+        font-size: 11px;
     }
 }
 

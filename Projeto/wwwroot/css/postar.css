@@ -133,7 +133,7 @@ button {
 .card-header h2 {
     font-size: 32px;
     line-height: 1.2;
-    font-weight: 800;
+    font-weight: 600;
     letter-spacing: -0.01em;
     color: var(--on-surface);
 }
@@ -231,6 +231,66 @@ textarea.form-control {
     pointer-events: none;
 }
 
+.upload-area {
+    width: 100%;
+    background-color: #100d15;
+    border: 2px dashed var(--outline-variant);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.upload-area:hover {
+    border-color: var(--primary-container);
+    background-color: var(--surface-container-low);
+}
+
+.upload-icon-wrapper {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-full);
+    background-color: var(--surface-container);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--on-surface);
+    transition: all 0.3s;
+}
+
+.upload-icon-wrapper span { 
+    font-size: 32px; 
+}
+
+/* Efeito de hover que muda a cor do ícone redondo */
+.upload-area:hover .upload-icon-wrapper {
+    background-color: var(--primary-container);
+    color: var(--on-primary-container);
+}
+
+.upload-text { 
+    text-align: center; 
+}
+
+.upload-title {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--on-surface);
+    margin-bottom: 4px;
+}
+
+.upload-subtitle {
+    display: block;
+    font-size: 14px;
+    color: var(--on-surface-variant);
+}
+
 /* Ações e Botão */
 .form-actions {
     display: flex;
@@ -274,6 +334,89 @@ textarea.form-control {
 
 .btn-back:hover {
     transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE PARA CELULARES PEQUENOS (até 480px, incluindo 375px)
+   ========================================================================== */
+@media (max-width: 480px) {
+    .content-canvas {
+        padding: var(--space-sm);
+    }
+
+    .create-post-card {
+        margin-top: var(--space-sm);
+        border-radius: var(--radius-lg);
+    }
+
+    .card-header {
+        padding: var(--space-md);
+    }
+
+    .card-header h2 {
+        font-size: 22px;
+    }
+
+    .card-header p {
+        font-size: 13px;
+    }
+
+    .post-form {
+        padding: var(--space-md);
+        gap: var(--space-lg);
+    }
+
+    .form-control {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 13px;
+    }
+
+    textarea.form-control {
+        min-height: 100px;
+    }
+
+    /* O botão de voltar usava position:absolute com left:5rem, o que sobrepunha
+       o conteúdo em telas pequenas. Em mobile ele volta ao fluxo normal do flex. */
+    .form-actions {
+        padding-top: var(--space-md);
+        justify-content: space-between;
+    }
+
+    .btn-back {
+        position: relative;
+        left: 0;
+        font-size: 1.8rem;
+    }
+
+    .btn-submit {
+        padding: var(--space-sm) var(--space-lg);
+        font-size: 13px;
+    }
+}
+
+/* Ajustes finos para telas bem estreitas (iPhone SE / 375px e menores) */
+@media (max-width: 375px) {
+    .card-header {
+        padding: var(--space-sm) var(--space-md);
+    }
+
+    .card-header h2 {
+        font-size: 19px;
+    }
+
+    .post-form {
+        padding: var(--space-sm);
+        gap: var(--space-md);
+    }
+
+    .btn-back {
+        font-size: 1.6rem;
+    }
+
+    .btn-submit {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 12.5px;
+    }
 }
 
 

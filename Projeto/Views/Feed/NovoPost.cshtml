@@ -31,7 +31,7 @@
                         <p>Detalhe o problema para que possamos resolvê-lo rapidamente.</p>
                     </div>
 
-                    <form method="post" asp-action="NovoPost" asp-controller="Feed" class="post-form">
+                    <form method="post" asp-action="NovoPost" asp-controller="Feed" class="post-form" enctype="multipart/form-data">
 
                         <div class="postar_box_area form-fields">
                             <div class="form-group">
@@ -50,59 +50,73 @@
                             <input type="hidden" name="StatusSugestao" value="E">
                         </div>
 
-                        <nav class="footer_box">
-                            <div class="footer_categorias form-grid">
+                        <div class="form-group">
+                            <label>Anexos</label>
+                            <label for="ImagemUpload" class="upload-area">
+                                <input type="file" id="ImagemUpload" name="Imagem" accept="image/*"
+                                       style="display: none;">
 
-                                <div class="form-group relative">
-                                    <label for="Categorias">Categoria</label>
-                                    <div class="select-wrapper">
-                                        <select name="Categorias" id="Categorias" class="form-control select-control"
-                                                required>
-                                            <option value="" disabled selected>Selecione</option>
-                                            @if (ViewBag.Categorias != null)
+                                <div class="upload-icon-wrapper">
+                                    <span class="material-symbols-outlined">add_photo_alternate</span>
+                                </div>
+                                <div class="upload-text">
+                                    <span class="upload-title">Adicionar Imagem</span>
+                                    <span class="upload-subtitle">Clique para navegar pelos arquivos</span>
+                                </div>
+                            </label>
+                        </div>
+
+                    <nav class="footer_box">
+                        <div class="footer_categorias form-grid">
+
+                            <div class="form-group relative">
+                                <label for="Categorias">Categoria</label>
+                                <div class="select-wrapper">
+                                    <select name="Categorias" id="Categorias" class="form-control select-control" required>
+                                        <option value="" disabled selected>Selecione</option>
+                                        @if (ViewBag.Categorias != null)
+                                        {
+                                            foreach (Categoria c in ViewBag.Categorias)
                                             {
-                                                foreach (Categoria c in ViewBag.Categorias)
-                                                {
-                                                    <option value="@c.Id">@c.Nome</option>
-                                                }
+                                                <option value="@c.Id">@c.Nome</option>
                                             }
-                                            *
-                                        </select>
-                                        <span class="material-symbols-outlined select-icon">expand_more</span>
-                                    </div>
+                                        }
+                                        *
+                                    </select>
+                                    <span class="material-symbols-outlined select-icon">expand_more</span>
                                 </div>
+                            </div>
 
-                                <div class="form-group relative">
-                                    <label for="Localizacao">Local</label>
-                                    <div class="select-wrapper">
-                                        <select name="Localizacao" id="Localizacao" class="form-control select-control"
-                                                required>
-                                            <option value="" selected disabled>Local</option>
-                                            <option value="1">1° Andar</option>
-                                            <option value="2">2° Andar</option>
-                                            <option value="C">Cowork</option>
-                                            <option value="B">Biblioteca</option>
-                                            <option value="R">Refeitório</option>
-                                        </select>
-                                        <span class="material-symbols-outlined select-icon">expand_more</span>
-                                    </div>
+                            <div class="form-group relative">
+                                <label for="Localizacao">Local</label>
+                                <div class="select-wrapper">
+                                    <select name="Localizacao" id="Localizacao" class="form-control select-control" required>
+                                        <option value="" selected disabled>Local</option>
+                                        <option value="1">1° Andar</option>
+                                        <option value="2">2° Andar</option>
+                                        <option value="C">Cowork</option>
+                                        <option value="B">Biblioteca</option>
+                                        <option value="R">Refeitório</option>
+                                    </select>
+                                    <span class="material-symbols-outlined select-icon">expand_more</span>
                                 </div>
-
                             </div>
-                        </nav>
 
-                        <div class="limiteCaracteres form-actions">
-                            <a asp-action="Index" asp-controller="Feed" method="post" class="btn-back"><i
-                                class="ri-arrow-left-line"></i></a>
+                        </div>
+                    </nav>
 
-                                <button type="submit" class="post_btn btn-submit">Postar Publicação</button>
-                            </div>
-                        </form>
-                    </section>
+                    <div class="limiteCaracteres form-actions">
+                        <a asp-action="Index" asp-controller="Feed" method="post" class="btn-back"><i
+                            class="ri-arrow-left-line"></i></a>
 
-                </div>
-            </main>
-        </div>
-    </body>
+                            <button type="submit" class="post_btn btn-submit">Postar Publicação</button>
+                        </div>
+                    </form>
+                </section>
+
+            </div>
+        </main>
+    </div>
+</body>
 
 </html>

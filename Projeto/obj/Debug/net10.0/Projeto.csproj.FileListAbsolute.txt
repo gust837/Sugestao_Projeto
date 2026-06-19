@@ -200,8 +200,6 @@ C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\Projet
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\Projeto.genruntimeconfig.cache
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\ref\Projeto.dll
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\nt7u91hi3m-{0}-yriqb449vx-yriqb449vx.gz
-C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\necipcz6ie-{0}-xkh6eos5f0-xkh6eos5f0.gz
-C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\smveabck7j-{0}-qqeyrshro8-qqeyrshro8.gz
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\bin\Debug\net10.0\Microsoft.Build.Framework.dll
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\bin\Debug\net10.0\Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.dll
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\bin\Debug\net10.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
@@ -220,10 +218,7 @@ C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\bin\Debug\net10.0\ru\Mic
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
-C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\xd29iwbm8c-{0}-j99s1f2fgx-j99s1f2fgx.gz
 C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\kyilc3kdv8-{0}-nccpqyuull-nccpqyuull.gz
-C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\umxswdfs91-{0}-nu0j9fuej8-nu0j9fuej8.gz
-C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\34yjxh32q5-{0}-ehcltfeiaw-ehcltfeiaw.gz
 C:\Users\Gustavo\Downloads\Sugestao_Projeto-html-css\Projeto\obj\Debug\net10.0\Projeto.dll
 C:\Users\Gustavo\Downloads\Sugestao_Projeto-html-css\Projeto\obj\Debug\net10.0\refint\Projeto.dll
 C:\Users\Gustavo\Downloads\Sugestao_Projeto-html-css\Projeto\obj\Debug\net10.0\Projeto.pdb
@@ -452,3 +447,10 @@ C:\Users\Gustavo\Downloads\Sugestao_Projeto-html-css\Projeto\obj\Debug\net10.0\P
 C:\Users\Gustavo\Downloads\Sugestao_Projeto-html-css\Projeto\obj\Debug\net10.0\Projeto.genruntimeconfig.cache
 C:\Users\Gustavo\Downloads\Sugestao_Projeto-html-css\Projeto\obj\Debug\net10.0\ref\Projeto.dll
 C:\Users\Gustavo\Downloads\Sugestao_Projeto-html-css\Projeto\obj\Debug\net10.0\compressed\jagsphtc83-{0}-j3r3uhdlug-j3r3uhdlug.gz
+C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\xd29iwbm8c-{0}-uwqruk20lt-uwqruk20lt.gz
+C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\necipcz6ie-{0}-3irfj00iiy-3irfj00iiy.gz
+C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\umxswdfs91-{0}-r29ktq8h8j-r29ktq8h8j.gz
+C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\34yjxh32q5-{0}-fx9aycslf6-fx9aycslf6.gz
+C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\jagsphtc83-{0}-j3r3uhdlug-j3r3uhdlug.gz
+C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\smveabck7j-{0}-4c0bopk68z-4c0bopk68z.gz
+C:\Users\52663088854\Documents\Sugestao_Projeto\Projeto\obj\Debug\net10.0\compressed\ccjrysxib0-{0}-jbxouqybxx-jbxouqybxx.gz
