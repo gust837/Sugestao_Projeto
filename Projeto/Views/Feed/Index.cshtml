@@ -18,7 +18,7 @@
     @{
         Layout = null;
     }
-<link rel="stylesheet" href="~/css/feed.css">
+    <link rel="stylesheet" href="~/css/feed.css">
 </head>
 
 <body>
@@ -50,7 +50,7 @@
                     <button class="filter-btn" id="fe">
                         <i class="ri-check-fill" id="f"></i>
                         <span class="filter-label">Feito</span>
-                    </button> 
+                    </button>
                     <button class="filter-btn" id="ea">
                         <i class="ri-loader-4-fill" id="a"></i>
                         <span class="filter-label">Em andamento</span>
@@ -78,10 +78,10 @@
                     <button class="filter-btn" id="aa2">
                         <i class="ri-pin-distance-line" id="a2"></i>
                         <span class="filter-label">2 andar</span>
-                        
+
                     </button>
                     <button class="filter-btn" id="c">
-                       <i class="ri-ping-pong-line" id="cow"></i>
+                        <i class="ri-ping-pong-line" id="cow"></i>
                         <span class="filter-label">Cowork</span>
                     </button>
                     <button class="filter-btn" id="refe">
@@ -89,7 +89,7 @@
                         <span class="filter-label">Refeitorio</span>
                     </button>
                     <button class="filter-btn" id="b">
-                       <i class="ri-book-shelf-line" id="bibi"></i>
+                        <i class="ri-book-shelf-line" id="bibi"></i>
                         <span class="filter-label">Biblioteca</span>
                     </button>
                 </nav>
@@ -101,7 +101,7 @@
                 </div>
                 <nav class="filter-nav">
                     <button class="filter-btn" id="s">
-                       <i class="ri-service-line" id="sus"></i>
+                        <i class="ri-service-line" id="sus"></i>
                         <span class="filter-label">Sustentabilidade</span>
                     </button>
                     <button class="filter-btn" id="t">
@@ -174,12 +174,6 @@
                         @* <button class="vote-btn vote-down">
                             <span class="material-symbols-outlined">keyboard_arrow_down</span>
                         </button> *@
-                        <form asp-action="ExcluirSugestao" asp-controller="Feed" method="post">
-                            <input type="hidden" value="@s.Id" name="postId">
-                            <button class="vote-btn vote-delete" type="submit">
-                                <span class="material-symbols-outlined">delete</span>
-                            </button>
-                        </form>
                     </div>
                     <div class="post-content">
                         <div class="post-header">
@@ -197,7 +191,7 @@
                                 <button onclick="esconder(this)" class="status-pill" id="admin">
                                     <span class="ri-check-line"></span> @statusNome
                                 </button>
-                                <div class="edicao status-panel"><select name="trocar"> 
+                                <div class="edicao status-panel"><select name="trocar">
                                     <option value="" selected disabled>Status</option>
                                     <option value="R">Recusado</option>
                                     <option value="F">Feito</option>
@@ -206,35 +200,29 @@
                                 </select>
                             </div>
                         </div>
-                        </div>
-                        <p class="post-body">
-                            @s.Descricao
-                        </p>
-                        <div class="post-actions">
-                            <button class="btn-action">
-                                <span class="material-symbols-outlined">chat_bubble</span> 42 Comments
-                            </button>
+                    </div>
+                    <p class="post-body">
+                        @s.Descricao
+                    </p>
+                    <div class="post-actions">
+                        <button class="btn-action">
+                            <span class="material-symbols-outlined">chat_bubble</span> 42 Comments
+                        </button>
                         <button class="btn-action salvar-btn">
                             <span class="ri-check-line"></span>
                         </button>
-                        <button class="btn-action excluir-btn">
-                            <i class="ri-delete-bin-line"></i>
-                        </button>
-                        </div>
+                        <form asp-action="ExcluirSugestao" asp-controller="Feed" method="post">
+                            <input type="hidden" value="@s.Id" name="Id">
+                            <button class="vote-btn vote-delete" type="submit">
+                                <span class="material-symbols-outlined">delete</span>
+                            </button>
+                        </form>
                     </div>
-                </article>
-            }
+                </div>
+            </article>
+        }
+</main>
 
-            <div class="loading-container">
-                <span class="material-symbols-outlined animate-spin">autorenew</span>
-            </div>
-        </main>
-    </div>
--container">
-                <span class="material-symbols-outlined animate-spin">autorenew</span>
-            </div>
-        </main>
-    </div>
 </body>
 
 </html>

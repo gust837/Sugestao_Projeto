@@ -14,7 +14,7 @@ namespace Projeto.Interfaces
 
         Task ExcluirVotos(int sugId);
 
-        Task ExcluirComentarios(int sugTd);
+        Task ExcluirComentarios(int sugId);
 
         Task ExcluirSugCat(int sugId);
 

@@ -59,23 +59,25 @@ namespace Projeto.Services
 
         public async Task EditarStatusSugestao(int sugId, string status)
         {
-            var sug = await _repository.ProcurarSugestao(sugId);
+            Sugestao? sug = await _repository.ProcurarSugestao(sugId);
+            if (sug == null) return;
 
             sug.StatusSugestao = status;
 
             await _repository.EditarSugestao(sug);
         }
 
-        public async Task ExcluirSugestao(int sugId)
+        public async Task<bool> ExcluirSugestao(int sugId)
         {
-            var sug = await _repository.ProcurarSugestao(sugId);
-            if (sug != null)
-            {
-                await _repository.ExcluirSugCat(sugId);
-                await _repository.ExcluirVotos(sugId);
-                await _repository.ExcluirComentarios(sugId);
-                await _repository.ExcluirSugestao(sug);
-            }
+            Sugestao? sug = await _repository.ProcurarSugestao(sugId);
+            if (sug == null) return false;
+
+            await _repository.ExcluirSugCat(sugId);
+            await _repository.ExcluirVotos(sugId);
+            await _repository.ExcluirComentarios(sugId);
+            await _repository.ExcluirSugestao(sug);
+
+            return true;
         }
 
         public async Task<IEnumerable<Sugestao>> ListarSugestaoPorStatus(string status)

@@ -52,9 +52,17 @@ namespace Projeto.Controllers
 
             var resultado = await _service.CriarSugestao(s, categorias, arquivoImagem);
             if (!resultado.Ok)
+            {
                 TempData["ErrorMessage"] = resultado.Mensagem;
-            else
-                TempData["SuccessMessage"] = resultado.Mensagem;
+                // Preserva os dados preenchidos pelo usuário para re-popular o formulário
+                TempData["FormNome"] = s.Nome;
+                TempData["FormDescricao"] = s.Descricao;
+                TempData["FormLocalizacao"] = s.Localizacao;
+                TempData["FormCategorias"] = categorias;
+                return RedirectToAction("NovoPost", "Feed");
+            }
+
+            TempData["SuccessMessage"] = resultado.Mensagem;
             return RedirectToAction("Index", "Feed");
         }
 

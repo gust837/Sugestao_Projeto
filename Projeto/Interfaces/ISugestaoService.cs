@@ -7,7 +7,7 @@ namespace Projeto.Interfaces
     {
         Task<(bool Ok, string Mensagem)> CriarSugestao(Sugestao s, string? categorias, IFormFile? arquivoImagem);
 
-        Task ExcluirSugestao(int sugId);
+        Task<bool> ExcluirSugestao(int sugId);
 
         Task Votar(int UsuarioId, int PostId);
 

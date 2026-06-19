@@ -105,8 +105,18 @@ Se houver conteúdo ilegal, drogas, armas, exploração infantil, violação de 
         {
             var client = new Client(apiKey: _apiKey);
 
+            // Mapa de códigos de localização para nomes legíveis
+            var locaisMap = new Dictionary<string, string>
+            {
+                { "1", "1° Andar" }, { "2", "2° Andar" }, { "C", "Cowork" },
+                { "B", "Biblioteca" }, { "R", "Refeitório" }, { "T", "Térreo" }
+            };
+
+            string LocalNome(string? cod) =>
+                cod != null && locaisMap.TryGetValue(cod, out var n) ? n : (cod ?? "Não informado");
+
             var sugestoesTexto = string.Join("\n", lista.Select((s, i) =>
-                $"[{i + 1}] Nome: \"{s.Nome}\" | Descrição: \"{s.Descricao}\""));
+                $"[{i + 1}] Nome: \"{s.Nome}\" | Descrição: \"{s.Descricao}\" | Local: \"{LocalNome(s.Localizacao)}\""));
 
             var prompt = $@"
 Você é um sistema de detecção de duplicidades em uma plataforma de sugestões institucionais.
@@ -114,18 +124,20 @@ Você é um sistema de detecção de duplicidades em uma plataforma de sugestõe
 Nova sugestão sendo submetida:
 Nome: ""{novaSugestao.Nome}""
 Descrição: ""{novaSugestao.Descricao}""
+Local: ""{LocalNome(novaSugestao.Localizacao)}""
 
 Sugestões já cadastradas no sistema:
 {sugestoesTexto}
 
-Sua tarefa: verifique se a nova sugestão trata do mesmo problema, porem só verifique caso seja de mesmo local, ou seja, se a sugestão nova e a antiga forem sobre o mesmo tema mas em locais diferentes, considere como única. Se a solução ou melhoria pedida for equivalente e um usuário leria as duas e concluiria que tratam da mesma coisa, considere como duplicada.
+Sua tarefa: verifique se a nova sugestão trata do MESMO problema E está no MESMO local que alguma já existente.
 
-Critérios para considerar DUPLICADA:
-- A solução ou melhoria pedida é equivalente
-- Um usuário leria as duas e concluiria que tratam da mesma coisa, caso não seja no mesmo local
+Critérios para considerar DUPLICADA (TODOS devem ser verdadeiros):
+- A sugestão existente está no MESMO local que a nova sugestão
+- A solução ou melhoria pedida é equivalente ou muito similar
+- Um usuário leria as duas e concluiria que tratam da mesma coisa
 
-Critérios para considerar ÚNICA:
-- Locais diferentes, mesmo que o problema seja parecido ou similar
+Critérios para considerar ÚNICA (qualquer um é suficiente):
+- Os locais são DIFERENTES (ex: bebedouro do 1° Andar vs bebedouro do 2° Andar → ÚNICA)
 - O tema é genuinamente diferente
 - Pode ser complementar, mas não idêntico em propósito
 
