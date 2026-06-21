@@ -1,4 +1,7 @@
 @using Projeto.Models
+@{
+    Layout = null;
+}
 <!DOCTYPE html>
 <html lang="pt-br" class="dark">
 
@@ -16,6 +19,8 @@
 
 
     <link rel="stylesheet" href="~/css/postar.css">
+    <link rel="stylesheet" href="~/css/page-transition.css">
+    <script src="~/js/page-transition.js" defer></script>
 </head>
 
 <body>
@@ -31,7 +36,7 @@
                         <p>Detalhe o problema para que possamos resolvê-lo rapidamente.</p>
                     </div>
 
-                    <form method="post" asp-action="NovoPost" asp-controller="Feed" class="post-form" enctype="multipart/form-data">
+                    <form method="post" asp-action="NovoPost" asp-controller="Feed" class="post-form" enctype="multipart/form-data" data-page-transition>
 
                         <div class="postar_box_area form-fields">
                             <div class="form-group">
@@ -52,8 +57,8 @@
 
                         <div class="form-group">
                             <label>Anexos</label>
-                            <label for="ImagemUpload" class="upload-area">
-                                <input type="file" id="ImagemUpload" name="Imagem" accept="image/*"
+                            <label for="arquivoImagem" class="upload-area">
+                                <input type="file" id="arquivoImagem" name="arquivoImagem" accept="image/*"
                                        style="display: none;">
 
                                 <div class="upload-icon-wrapper">

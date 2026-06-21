@@ -1,21 +1,31 @@
+@{
+  Layout = null;
+}
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-<meta charset="utf-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SEMC - Melhorando o nosso SENAI Juntos</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
 
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-
   <!-- Stylesheet -->
   <link rel="stylesheet" href="~/css/main.css" />
+  <link rel="stylesheet" href="~/css/page-transition.css" asp-append-version="true" />
+
+  
+  <script src="~/js/home.js" defer></script>
+  <script src="~/js/page-transition.js" defer asp-append-version="true"></script>
 </head>
+
 <body>
 
   <!-- ========== HEADER ========== -->
@@ -92,11 +102,9 @@
     <div class="about__inner">
 
       <div class="about__image-wrapper">
-        <img
-          class="about__image"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU3irkOv4WWZGq41ZGfus0eUhTZ1AmVaA1v5cfc5dXjZIOf9ScRe3wd7oFQcYyp-o_5koq-pHfGM82QMW1WexD0u3P0YPCWMpCMVeZ5xzh5BgDCkx3LmywLtH8_EQHv26S5qKsJfFjgjbl06VV2Zw7VdmJUj5bfO6PrOyiUhT_RstqjMgiziFOsNcQmajQDWClbvuP9iCkPXl_z4x-Gx6mivibl-NoWtM2VYkxWCxqAU8uL5uv_-g7P6J_lHK57cmiCEJvH7AxyORHqg"
-          alt="Escola SENAI Paulo Antonio Skaf"
-        />
+        <img class="about__image"
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU3irkOv4WWZGq41ZGfus0eUhTZ1AmVaA1v5cfc5dXjZIOf9ScRe3wd7oFQcYyp-o_5koq-pHfGM82QMW1WexD0u3P0YPCWMpCMVeZ5xzh5BgDCkx3LmywLtH8_EQHv26S5qKsJfFjgjbl06VV2Zw7VdmJUj5bfO6PrOyiUhT_RstqjMgiziFOsNcQmajQDWClbvuP9iCkPXl_z4x-Gx6mivibl-NoWtM2VYkxWCxqAU8uL5uv_-g7P6J_lHK57cmiCEJvH7AxyORHqg"
+             alt="Escola SENAI Paulo Antonio Skaf" />
       </div>
 
       <div class="about__content">
@@ -137,4 +145,5 @@
   </footer>
 
 </body>
+
 </html>

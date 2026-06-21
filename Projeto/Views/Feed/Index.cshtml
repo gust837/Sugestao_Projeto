@@ -3,6 +3,10 @@
 <html lang="pt-br">
 
 <head>
+    <script>document.documentElement.classList.add('js');</script>
+    @{
+        Layout = null;
+    }
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>SEMC - Main Feed</title>
@@ -14,11 +18,13 @@
           integrity="sha512-XcIsjKMcuVe0Ucj/xgIXQnytNwBttJbNjltBV18IOnru2lDPe9KRRyvCXw6Y5H415vbBLRm8+q6fmLUU7DfO6Q=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
     <script src="~/js/editar.js"></script>
-    @{
-        Layout = null;
-    }
-<link rel="stylesheet" href="~/css/feed.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/page-transition.js" defer asp-append-version="true"></script>
+
+    <link rel="stylesheet" href="~/css/feed.css">
+    <link rel="stylesheet" href="~/css/page-transition.css" asp-append-version="true">
 </head>
 
 <body>
@@ -28,9 +34,11 @@
             <span class="logo-text">SEMC</span>
         </div>
         <div class="navbar-actions">
-            <button class="btn-icon">
-                <i class="ri-logout-circle-line"></i>
-            </button>
+            <form asp-action="Deslogar" asp-controller="Login" method="post" data-page-transition>
+                <button class="btn-icon">
+                    <i class="ri-logout-circle-line"></i>
+                </button>
+            </form>
         </div>
     </nav>
 
@@ -54,7 +62,7 @@
                     <button class="filter-btn" id="fe">
                         <i class="ri-check-fill" id="f"></i>
                         <span class="filter-label">Feito</span>
-                    </button> 
+                    </button>
                     <button class="filter-btn" id="ea">
                         <i class="ri-loader-4-fill" id="a"></i>
                         <span class="filter-label">Em andamento</span>
@@ -82,10 +90,10 @@
                     <button class="filter-btn" id="aa2">
                         <i class="ri-pin-distance-line" id="a2"></i>
                         <span class="filter-label">2 andar</span>
-                        
+
                     </button>
                     <button class="filter-btn" id="c">
-                       <i class="ri-ping-pong-line" id="cow"></i>
+                        <i class="ri-ping-pong-line" id="cow"></i>
                         <span class="filter-label">Cowork</span>
                     </button>
                     <button class="filter-btn" id="refe">
@@ -93,7 +101,7 @@
                         <span class="filter-label">Refeitorio</span>
                     </button>
                     <button class="filter-btn" id="b">
-                       <i class="ri-book-shelf-line" id="bibi"></i>
+                        <i class="ri-book-shelf-line" id="bibi"></i>
                         <span class="filter-label">Biblioteca</span>
                     </button>
                 </nav>
@@ -105,7 +113,7 @@
                 </div>
                 <nav class="filter-nav">
                     <button class="filter-btn" id="s">
-                       <i class="ri-service-line" id="sus"></i>
+                        <i class="ri-service-line" id="sus"></i>
                         <span class="filter-label">Sustentabilidade</span>
                     </button>
                     <button class="filter-btn" id="t">
@@ -152,10 +160,26 @@
                 string statusIcone = "";
                 string statusClasse = "";
 
-                if (s.StatusSugestao == "A") { statusNome = "Em andamento"; statusIcone = "ri-loader-4-line"; statusClasse = "status-andamento"; }
-                else if (s.StatusSugestao == "E") { statusNome = "Em espera"; statusIcone = "ri-time-line"; statusClasse = "status-espera"; }
-                else if (s.StatusSugestao == "F") { statusNome = "Feito"; statusIcone = "ri-check-line"; statusClasse = "status-feito"; }
-                else if (s.StatusSugestao == "R") { statusNome = "Recusado"; statusIcone = "ri-error-warning-line"; statusClasse = "status-recusado"; }
+                if (s.StatusSugestao == "A")
+                {
+                    statusNome = "Em andamento"; statusIcone = "ri-loader-4-line"; statusClasse =
+     "status-andamento";
+                }
+                else if (s.StatusSugestao == "E")
+                {
+                    statusNome = "Em espera"; statusIcone = "ri-time-line"; statusClasse =
+ "status-espera";
+                }
+                else if (s.StatusSugestao == "F")
+                {
+                    statusNome = "Feito"; statusIcone = "ri-check-line"; statusClasse =
+          "status-feito";
+                }
+                else if (s.StatusSugestao == "R")
+                {
+                    statusNome = "Recusado"; statusIcone = "ri-error-warning-line";
+                    statusClasse = "status-recusado";
+                }
 
                 TimeSpan diferenca = DateTime.Now - s.DataSugestao;
                 string tempoTexto = "";
@@ -193,13 +217,14 @@
                                 </div>
                                 <h3 class="post-title">@s.Nome</h3>
                             </div>
-                            <form asp-action="EditarSugestao" asp-controller="Feed" method="post" class="editar">
+                            <form asp-action="EditarSugestao" asp-controller="Feed" method="post" class="editar"
+                                  id="form-editar-@s.Id">
                                 <input type="hidden" name="id" value="@s.Id" />
                                 <button type="button" onclick="esconder(this)" class="status-pill @statusClasse" id="admin">
                                     <span class="@statusIcone"></span> @statusNome
                                 </button>
                                 <div class="edicao status-panel">
-                                    <select name="status" onchange="this.form.submit()">
+                                    <select name="status" id="select-status-@s.Id">
                                         <option value="" selected disabled>Status</option>
                                         <option value="R">Recusado</option>
                                         <option value="F">Feito</option>
@@ -212,17 +237,25 @@
                         <p class="post-body">
                             @s.Descricao
                         </p>
+                        @if (!string.IsNullOrEmpty(s.Imagem))
+                        {
+                            <img src="~/@s.Imagem" alt="Imagem da sugestão" class="post-image">
+                        }
                         <div class="post-actions">
                             <button class="btn-action">
                                 <span class="material-symbols-outlined">chat_bubble</span> 42 Comments
                             </button>
-                        <button class="btn-action salvar-btn">
-                            <span class="ri-check-line"></span>
-                        </button>
-                        <button class="btn-action excluir-btn">
-                            <i class="ri-delete-bin-line"></i>
-                        </button>
+                            <button type="button" class="btn-action salvar-btn" onclick="confirmarStatus(@s.Id)">
+                                <span class="ri-check-line"></span>
+                            </button>
+                            <button type="button" class="btn-action excluir-btn" onclick="confirmarExclusao(@s.Id)">
+                                <i class="ri-delete-bin-line"></i>
+                            </button>
                         </div>
+                        <form asp-action="ExcluirSugestao" asp-controller="Feed" method="post" id="form-excluir-@s.Id"
+                              style="display:none;">
+                            <input type="hidden" name="id" value="@s.Id" />
+                        </form>
                     </div>
                 </article>
             }

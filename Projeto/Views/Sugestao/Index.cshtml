@@ -1,78 +1,52 @@
 @using Projeto.Models
+@{
+    Layout = null;
+}
+@section Scripts {
+    <script src="~/js/sugestaoCategoria.js"></script>
+}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
-    @model IEnumerable<Sugestao>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <link rel="stylesheet" href="~/css/page-transition.css">
+    <script src="~/js/page-transition.js" defer></script>
 </head>
 
 <body>
+    <form asp-action="NovaSugestao" asp-controller="Sugestao" method="post">
+        <label>
+            <input type="text" name="Nome">
+        </label>
+        <label>
+            <input type="text" name="Descricao">
+        </label>
+        <label>
+            <select id="categoria">
+                <option value="" disabled selected>Selecione</option>
+                @if (ViewBag.Categorias != null) foreach (Categoria c in ViewBag.Categorias)
+                {
+                    <option value="@c.Id">@c.Nome</option>
+                }
+            </select>
+        </label>
+        <input type="hidden" name="StatusSugestao" value="E"></input>
+        <label>
+            <select name="Localizacao">
+                <option value="T">terreo</option>
+                <option value="1">primeiro andar</option>
+                <option value="2">segundo andar</option>
+                <option value="C">coworking</option>
+                <option value="R">refeitorio</option>
+            </select>
+        </label>
 
-    <table>
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>título</th>
-                <th>descrição</th>
-                <th>categorias</th>
-                <th>status sugestaão</th>
-                <th>data status</th>
-                <th>data sugestão</th>
-                <th>localização</th>
-                <th>votos</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach (Sugestao s in Model)
-            {
-                string categorias = string.Join(", ", s.Sugestao_Categorias.Select(sg => sg.Categoria.Nome));
-                <tr>
-                    <th>@s.Id</th>
-                    <th>@s.Nome</th>
-                    <th>@s.Descricao</th>
-                    <th>@categorias</th>
-                    <th>
-                        @s.StatusSugestao
-                        <form method="post" asp-action="EditarSugestao" asp-controller="Sugestao">
-                            <input type="hidden" value="@s.Id" name="id">
-                            <label for="status">
-                                <select name="status">
-                                    <option value="A">em andamento</option>
-                                    <option value="E">em espera</option>
-                                    <option value="F">finalizado</option>
-                                    <option value="R">recusado</option>
-                                </select>
-                            </label>
-                            <button type="submit">confirmar edição</button>
-                        </form>
-                    </th>
-                    <th>@s.DataStatus.Date</th>
-                    <th>@s.DataSugestao.Date</th>
-                    <th>@s.Localizacao</th>
-                    <th>@s.Votos</th>
-                    <th>
-                        <form method="post" asp-action="ExcluirSugestao" asp-controller="Sugestao">
-                            <input type="hidden" value="@s.Id" name="id">
-                            <button type="submit">❌</button>
-                        </form>
-
-                        <form method="post" asp-action="Votar" asp-controller="Sugestao">
-                            <input type="hidden" value="@s.Id" name="postId">
-                            <button type="submit">👍</button>
-                        </form>
-                    </th>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-    <a asp-action="NovaSugestao" asp-controller="Sugestao" method="get">nova sugestão</a>
-
+        <button type="submit">postar</button>
+    </form>
 </body>
 
-</html
+</html>
