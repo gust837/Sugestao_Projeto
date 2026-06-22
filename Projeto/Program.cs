@@ -23,6 +23,8 @@ builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<ISugestaoRepository, SugestaoRepository>();
 builder.Services.AddScoped<ISugestaoService, SugestaoService>();
 
+builder.Services.AddScoped<IContentSafetyService, ContentSafetyService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

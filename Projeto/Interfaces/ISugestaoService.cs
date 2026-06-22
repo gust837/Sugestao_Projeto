@@ -7,6 +7,8 @@ namespace Projeto.Interfaces
     {
         Task CriarSugestao(Sugestao s, string? categorias, IFormFile arquivoImagem);
 
+        Task<(bool Sucesso, string MensagemErro)> ValidarESalvarSugestaoAsync(Sugestao s, string? categorias, IFormFile arquivoImagem);
+
         Task ExcluirSugestao(int sugId);
 
         Task Votar(int UsuarioId, int PostId);

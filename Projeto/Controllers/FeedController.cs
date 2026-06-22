@@ -8,10 +8,12 @@ namespace Projeto.Controllers
     public class FeedController : Controller
     {
         private readonly ISugestaoService _service;
+        private readonly IWebHostEnvironment _env;
 
-        public FeedController(ISugestaoService service)
+        public FeedController(ISugestaoService service, IWebHostEnvironment env)
         {
             _service = service;
+            _env = env;
         }
 
         public bool VerificarSessaoFalse()
@@ -66,7 +68,15 @@ namespace Projeto.Controllers
             s.DataStatus = DateTime.Today;
             s.DataSugestao = DateTime.Today;
 
-            await _service.CriarSugestao(s, categorias, arquivoImagem);
+            var (sucesso, mensagemErro) = await _service.ValidarESalvarSugestaoAsync(s, categorias, arquivoImagem);
+
+            if (!sucesso)
+            {
+                ViewBag.Categorias = await _service.ListarCategorias();
+                ViewBag.ErroValidacao = mensagemErro;
+                return View(s);
+            }
+
             return RedirectToAction("Index", "Feed");
         }
 

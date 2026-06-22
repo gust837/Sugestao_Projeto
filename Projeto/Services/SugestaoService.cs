@@ -10,10 +10,30 @@ namespace Projeto.Services
     public class SugestaoService : ISugestaoService
     {
         private readonly ISugestaoRepository _repository;
+        private readonly IContentSafetyService _contentSafety;
 
-        public SugestaoService(ISugestaoRepository repository)
+        public SugestaoService(ISugestaoRepository repository, IContentSafetyService contentSafety)
         {
             _repository = repository;
+            _contentSafety = contentSafety;
+        }
+
+        public async Task<(bool Sucesso, string MensagemErro)> ValidarESalvarSugestaoAsync(Sugestao s, string? categorias, IFormFile arquivoImagem)
+        {
+            // 1. Validação de conteúdo (palavrão, conteúdo ofensivo, imagem)
+            var (isSafe, safetyMsg) = await _contentSafety.ValidacaoSugestaoAsync(s, arquivoImagem);
+            if (!isSafe)
+                return (false, safetyMsg);
+
+            // 2. Verificação de duplicidade (mesma sugestão + mesmo local)
+            var sugestoesExistentes = await _repository.ListarSugestoes();
+            var (isDuplicate, duplicateMsg) = await _contentSafety.VerificarDuplicidadeAsync(s, sugestoesExistentes);
+            if (isDuplicate)
+                return (false, duplicateMsg);
+
+            // 3. Tudo OK — salva
+            await CriarSugestao(s, categorias, arquivoImagem);
+            return (true, string.Empty);
         }
 
         public async Task CriarSugestao(Sugestao s, string? categorias, IFormFile arquivoImagem)
