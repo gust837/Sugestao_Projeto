@@ -1,0 +1,421 @@
+:root {
+    /* Cores Escuras */
+    --background: rgb(5, 5, 5);
+    --surface: rgb(20, 20, 20);
+    --surface-container-low: #1d1a23;
+    --surface-container: #211e27;
+    
+    /* Cores Primárias (Roxo/Violeta) */
+    --primary-container: rgb(104, 44, 201);
+    --on-primary-container: #ffffff;
+    --primary-hover: #7239d3;
+    
+    /* Texto & Bordas */
+    --on-surface: #e8e0ed;
+    --on-surface-variant: #ccc3d6;
+    --outline-variant: #4a4454;
+    --outline: #958da0;
+    
+    /* Tipografia */
+    --font-family: 'Syne', sans-serif;
+    
+    /* Espaçamento & Bordas */
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-full: 9999px;
+    
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 40px;
+}
+
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--on-surface);
+    font-family: var(--font-family);
+    -webkit-font-smoothing: antialiased;
+    height: 100vh;
+    overflow: hidden;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+/* Ícones Material */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Scrollbar Personalizada */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--outline-variant); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--outline); }
+
+/* ==========================================================================
+   LAYOUT GERAL
+   ========================================================================== */
+.app-wrapper {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.content-canvas {
+    flex: 1;
+    padding: var(--space-md);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-bottom: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+    .content-canvas { padding: var(--space-xl); }
+}
+
+/* ==========================================================================
+   COMPONENTE DO CARD DE POSTAGEM
+   ========================================================================== */
+.create-post-card {
+    width: 100%;
+    max-width: 48rem; /* equivalente ao max-w-3xl */
+    background-color: var(--surface);
+    border: 1px solid var(--outline-variant);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    position: relative;
+    margin-top: var(--space-lg);
+}
+
+.card-gradient-border {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(to right, transparent, var(--primary-container), transparent);
+    opacity: 0.5;
+    border-top-left-radius: var(--radius-xl);
+    border-top-right-radius: var(--radius-xl);
+}
+
+.card-header {
+    padding: var(--space-lg) var(--space-xl);
+    border-bottom: 1px solid rgba(74, 68, 84, 0.5);
+    background-color: rgba(29, 26, 35, 0.5);
+    backdrop-filter: blur(12px);
+    border-top-left-radius: var(--radius-xl);
+    border-top-right-radius: var(--radius-xl);
+}
+
+.card-header h2 {
+    font-size: 32px;
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--on-surface);
+}
+
+.card-header p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--on-surface-variant);
+    margin-top: var(--space-sm);
+}
+
+/* ==========================================================================
+   FORMULÁRIO
+   ========================================================================== */
+.post-form {
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+    .form-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    position: relative;
+}
+
+.form-group label {
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--on-surface-variant);
+}
+
+.form-control {
+    width: 100%;
+    background-color: var(--surface-container-low);
+    border: 1px solid var(--outline-variant);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--on-surface);
+    transition: all 0.2s;
+}
+
+.form-control::placeholder { color: var(--outline); }
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-container);
+    box-shadow: 0 0 0 1px var(--primary-container);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+}
+
+/* Inputs de Seleção (Dropdowns) */
+.select-wrapper { position: relative; }
+
+.select-control {
+    appearance: none;
+    cursor: pointer;
+    padding-right: var(--space-xl);
+}
+
+.select-icon {
+    position: absolute;
+    right: var(--space-md);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--on-surface-variant);
+    pointer-events: none;
+}
+
+.upload-area {
+    width: 100%;
+    background-color: #100d15;
+    border: 2px dashed var(--outline-variant);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.upload-area:hover {
+    border-color: var(--primary-container);
+    background-color: var(--surface-container-low);
+}
+
+.upload-icon-wrapper {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-full);
+    background-color: var(--surface-container);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--on-surface);
+    transition: all 0.3s;
+}
+
+.upload-icon-wrapper span { 
+    font-size: 32px; 
+}
+
+/* Efeito de hover que muda a cor do ícone redondo */
+.upload-area:hover .upload-icon-wrapper {
+    background-color: var(--primary-container);
+    color: var(--on-primary-container);
+}
+
+.upload-text { 
+    text-align: center; 
+}
+
+.upload-title {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--on-surface);
+    margin-bottom: 4px;
+}
+
+.upload-subtitle {
+    display: block;
+    font-size: 14px;
+    color: var(--on-surface-variant);
+}
+
+/* Ações e Botão */
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: var(--space-lg);
+    margin-top: var(--space-md);
+    border-top: 1px solid rgba(74, 68, 84, 0.5);
+}
+
+.btn-submit {
+    background-color: var(--primary-container);
+    color: var(--on-primary-container);
+    font-size: 14px;
+    font-weight: 600;
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-full);
+    box-shadow: 0 10px 15px -3px rgba(104, 44, 201, 0.2);
+    transition: all 0.3s;
+    border: 1px solid transparent;
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-hover);
+    box-shadow: 0 10px 15px -3px rgba(104, 44, 201, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-submit:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--primary-container);
+}
+
+.btn-back{
+    left: 5rem;
+    position: absolute;
+    font-size: 2.5rem;
+    text-decoration: none;
+    color: var(--primary-hover);
+}
+
+.btn-back:hover {
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE PARA CELULARES PEQUENOS (até 480px, incluindo 375px)
+   ========================================================================== */
+@media (max-width: 480px) {
+    .content-canvas {
+        padding: var(--space-sm);
+    }
+
+    .create-post-card {
+        margin-top: var(--space-sm);
+        border-radius: var(--radius-lg);
+    }
+
+    .card-header {
+        padding: var(--space-md);
+    }
+
+    .card-header h2 {
+        font-size: 22px;
+    }
+
+    .card-header p {
+        font-size: 13px;
+    }
+
+    .post-form {
+        padding: var(--space-md);
+        gap: var(--space-lg);
+    }
+
+    .form-control {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 13px;
+    }
+
+    textarea.form-control {
+        min-height: 100px;
+    }
+
+    /* O botão de voltar usava position:absolute com left:5rem, o que sobrepunha
+       o conteúdo em telas pequenas. Em mobile ele volta ao fluxo normal do flex. */
+    .form-actions {
+        padding-top: var(--space-md);
+        justify-content: space-between;
+    }
+
+    .btn-back {
+        position: relative;
+        left: 0;
+        font-size: 1.8rem;
+    }
+
+    .btn-submit {
+        padding: var(--space-sm) var(--space-lg);
+        font-size: 13px;
+    }
+}
+
+/* Ajustes finos para telas bem estreitas (iPhone SE / 375px e menores) */
+@media (max-width: 375px) {
+    .card-header {
+        padding: var(--space-sm) var(--space-md);
+    }
+
+    .card-header h2 {
+        font-size: 19px;
+    }
+
+    .post-form {
+        padding: var(--space-sm);
+        gap: var(--space-md);
+    }
+
+    .btn-back {
+        font-size: 1.6rem;
+    }
+
+    .btn-submit {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 12.5px;
+    }
+}
+

@@ -1,0 +1,583 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-first:       hsl(263, 64%, 48%);
+  --color-first-alt:   hsl(263, 64%, 44%);
+  --color-border:      hsl(0, 0%, 45%);
+  --color-title:       hsl(0, 0%, 95%);
+  --color-text:        hsl(0, 0%, 55%);
+  --color-body:        hsl(0, 0%, 4%);
+  --color-container:   hsl(0, 0%, 8%);
+  --color-accent-red:  #a83232;
+
+  --bg-main-section:   #121621;
+  --bg-about-section:  #262b3a;
+  --bg-card:           #1a1e29;
+  --bg-footer:         #12141d;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: 'Syne', sans-serif;
+  background-color: var(--color-body);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-title);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* =====================
+   HEADER
+   ===================== */
+.header {
+  background-color: var(--color-body);
+  padding: 1rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.header__spacer {
+  width: 33.333%;
+}
+
+.header__logo-wrapper {
+  width: 33.333%;
+  text-align: center;
+}
+
+.header__logo {
+  color: var(--color-title);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.header__actions {
+  width: 33.333%;
+  text-align: right;
+}
+
+.btn-login {
+  display: inline-block;
+  background-color: var(--color-first);
+  color: #fff;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  box-shadow: 0 0 0 rgba(103, 44, 201, 0);
+  transition: background-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.btn-login:hover {
+  background-color: var(--color-first-alt);
+  box-shadow: 0 10px 24px rgba(103, 44, 201, 0.35);
+  transform: translateY(-3px);
+}
+
+.btn-login:active {
+  transform: translateY(-1px);
+}
+
+/* =====================
+   HERO
+   ===================== */
+.hero {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  padding: 5rem 10rem 8rem;
+   background-image: url('ahpra english language test.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero__content {
+  max-width: 48rem;
+}
+
+.hero__title {
+  font-size: clamp(2.5rem, 6vw, 3.75rem);
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  line-height: 1.15;
+}
+
+.hero__description {
+  color: #fff;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  max-width: 36rem;
+  opacity: 0.9;
+  line-height: 1.7;
+}
+
+/* =====================
+   HOW IT WORKS
+   ===================== */
+.how-it-works {
+  background-color: var(--bg-main-section);
+  padding: 5rem 3rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-header__title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-title);
+  margin-bottom: 1rem;
+}
+
+.section-header__subtitle {
+  color: var(--color-title);
+  opacity: 0.8;
+  font-size: 1.125rem;
+  letter-spacing: 0.05em;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+/* =====================
+   CARD
+   ===================== */
+.card {
+  background-color: var(--bg-card);
+  border-radius: 1rem;
+  padding: 2.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.card__icon-wrapper {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-shrink: 0;
+}
+
+.card__icon-wrapper--red {
+  background-color: #fecaca;
+}
+
+.card__icon-wrapper--blue {
+  background-color: #bfdbfe;
+}
+
+.card__icon-wrapper--green {
+  background-color: #bbf7d0;
+}
+
+.card__icon {
+  font-size: 2.25rem;
+}
+
+.card__icon--red  { color: #dc2626; }
+.card__icon--blue { color: #2563eb; }
+.card__icon--green{ color: #16a34a; }
+
+.card__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-title);
+  margin-bottom: 1rem;
+  letter-spacing: 0.1em;
+}
+
+.card__text {
+  color: var(--color-title);
+  opacity: 0.7;
+  line-height: 1.7;
+  padding: 0 1rem;
+}
+
+/* =====================
+   ABOUT
+   ===================== */
+.about {
+  background-color: var(--bg-about-section);
+  padding: 6rem 6rem;
+}
+
+.about__inner {
+  max-width: 80rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.about__image-wrapper {
+  width: 50%;
+  flex-shrink: 0;
+}
+
+.about__image {
+  border-radius: 1rem;
+  width: 100%;
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(115, 115, 115, 0.2);
+}
+
+.about__content {
+  width: 50%;
+}
+
+.about__tag {
+  color: var(--color-accent-red);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.about__title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--color-title);
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.about__body {
+  color: var(--color-title);
+  opacity: 0.8;
+  font-size: 1.125rem;
+  font-weight: 300;
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* =====================
+   FOOTER
+   ===================== */
+.footer {
+  background-color: var(--color-body);
+  padding: 2rem 3rem;
+  border-top: 1px solid rgba(115, 115, 115, 0.1);
+}
+
+.footer__inner {
+  max-width: 80rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footer__brand-name {
+  color: var(--color-title);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  margin-bottom: 0.25rem;
+}
+
+.footer__copy {
+  font-size: 0.75rem;
+  color: var(--color-text);
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.footer__link {
+  font-size: 0.75rem;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: underline;
+  text-decoration-color: rgba(140, 140, 140, 0.5);
+  text-underline-offset: 4px;
+  transition: color 0.2s ease;
+}
+
+.footer__link:hover {
+  color: var(--color-title);
+}
+
+/* =====================
+   RESPONSIVE
+   ===================== */
+@media (max-width: 1024px) {
+  .about {
+    padding: 4rem 3rem;
+  }
+
+  .about__inner {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .about__image-wrapper,
+  .about__content {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem 1.5rem;
+  }
+
+  .hero {
+    padding: 5rem 1.5rem 8rem;
+  }
+
+  .how-it-works {
+    padding: 5rem 1.5rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about {
+    padding: 4rem 1.5rem;
+  }
+
+  .footer {
+    padding: 2rem 1.5rem;
+  }
+
+  .footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .footer__links {
+    justify-content: flex-start;
+    gap: 1.5rem;
+  }
+}
+
+/* ==========================================================================
+   ANIMAÇÕES DE ENTRADA AO ROLAR A PÁGINA
+   Funcionam via JavaScript (IntersectionObserver, ver wwwroot/js/home.js),
+   não mais via "animation-timeline: view()" — em páginas com pouca rolagem
+   (como esta), esse recurso deixava elementos travados no meio da animação
+   ou nunca chegava a completá-la. Sem JavaScript, os elementos aparecem
+   normalmente, sem animação (graças ao seletor ".js").
+   ========================================================================== */
+.js .how-it-works,
+.js .about__inner {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 1.3s ease-out, transform 1.3s ease-out;
+}
+
+.js .how-it-works.is-visible,
+.js .about__inner.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ==========================================================================
+   ANIMAÇÕES DE ENTRADA — HEADER E HERO (ao carregar a página)
+   ========================================================================== */
+.header {
+  animation: fadeInDown 0.8s ease-out both;
+}
+
+.hero__content {
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   ANIMAÇÃO DE ENTRADA — CARDS (em cascata) E FOOTER
+   ========================================================================== */
+.js .card {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1.3s ease-out, transform 1.3s ease-out;
+}
+
+.js .card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:nth-child(2) {
+  transition-delay: 0.15s;
+}
+
+.card:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.js .footer {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.3s ease-out, transform 1.3s ease-out;
+}
+
+.js .footer.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =====================
+   ANIMACOES SOLICITADAS
+   ===================== */
+.header {
+  animation: headerEnterDown 0.8s ease-out both;
+}
+
+.hero__content {
+  animation: none;
+}
+
+.hero__title,
+.hero__description {
+  animation: bannerLettersUp 0.9s ease-out both;
+}
+
+.hero__description {
+  animation-delay: 0.2s;
+}
+
+.js .card {
+  opacity: 0;
+  transform: translateX(-70px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.js .card:nth-child(2) {
+  transform: translateX(70px);
+  transition-delay: 0.15s;
+}
+
+.js .card:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.js .card.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.js .about__inner {
+  opacity: 1;
+  transform: none;
+}
+
+.js .about__image-wrapper,
+.js .about__content {
+  opacity: 0;
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.js .about__image-wrapper {
+  transform: translateX(-70px);
+}
+
+.js .about__content {
+  transform: translateX(70px);
+}
+
+.js .about__inner.is-visible .about__image-wrapper,
+.js .about__inner.is-visible .about__content {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@keyframes headerEnterDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bannerLettersUp {
+  from {
+    opacity: 0;
+    transform: translateY(45px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,8 +1,149 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+  Layout = null;
 }
+<!DOCTYPE html>
+<html lang="pt-br">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEMC - Melhorando o nosso SENAI Juntos</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="~/css/main.css" />
+  <link rel="stylesheet" href="~/css/page-transition.css" asp-append-version="true" />
+
+  
+  <script src="~/js/home.js" defer></script>
+  <script src="~/js/page-transition.js" defer asp-append-version="true"></script>
+</head>
+
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header">
+    <div class="header__spacer"></div>
+
+    <div class="header__logo-wrapper">
+      <a class="header__logo" href="#">SEMC</a>
+    </div>
+
+    <div class="header__actions">
+      <a asp-action="Index" asp-controller="Login" class="btn-login">Entrar</a>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="hero__content">
+      <h1 class="hero__title">Melhorando o nosso SENAI Juntos!</h1>
+      <p class="hero__description">
+        Identifique problemas estruturais, vote nas maiores prioridades do campus e acompanhe
+        de perto as soluções que mudam o nosso dia a dia.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== COMO FUNCIONA ========== -->
+  <section class="how-it-works">
+    <div class="section-header">
+      <h2 class="section-header__title">Como funciona?</h2>
+      <p class="section-header__subtitle">Três passos simples para podermos mudar nossa instituição</p>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- Card: Reportar -->
+      <div class="card">
+        <div class="card__icon-wrapper card__icon-wrapper--red">
+          <i class="fa-solid fa-circle-exclamation card__icon card__icon--red" aria-hidden="true"></i>
+        </div>
+        <h3 class="card__title">Reportar</h3>
+        <p class="card__text">
+          Encontrou algo quebrado ou precisando de manutenção? Registre rapidamente com foto e localização.
+        </p>
+      </div>
+
+      <!-- Card: Votar -->
+      <div class="card">
+        <div class="card__icon-wrapper card__icon-wrapper--blue">
+          <i class="fa-solid fa-circle-check card__icon card__icon--blue" aria-hidden="true"></i>
+        </div>
+        <h3 class="card__title">Votar</h3>
+        <p class="card__text">
+          Apoie os problemas relatados por outros alunos. Os itens com mais votos ganham prioridade de atendimento.
+        </p>
+      </div>
+
+      <!-- Card: Resolver -->
+      <div class="card">
+        <div class="card__icon-wrapper card__icon-wrapper--green">
+          <i class="fa-solid fa-thumbs-up card__icon card__icon--green" aria-hidden="true"></i>
+        </div>
+        <h3 class="card__title">Resolver</h3>
+        <p class="card__text">
+          Acompanhe o status do seu chamado. Receba notificações quando o problema estiver em andamento e for concluído.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== SOBRE ========== -->
+  <section class="about">
+    <div class="about__inner">
+
+      <div class="about__image-wrapper">
+        <img class="about__image"
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU3irkOv4WWZGq41ZGfus0eUhTZ1AmVaA1v5cfc5dXjZIOf9ScRe3wd7oFQcYyp-o_5koq-pHfGM82QMW1WexD0u3P0YPCWMpCMVeZ5xzh5BgDCkx3LmywLtH8_EQHv26S5qKsJfFjgjbl06VV2Zw7VdmJUj5bfO6PrOyiUhT_RstqjMgiziFOsNcQmajQDWClbvuP9iCkPXl_z4x-Gx6mivibl-NoWtM2VYkxWCxqAU8uL5uv_-g7P6J_lHK57cmiCEJvH7AxyORHqg"
+             alt="Escola SENAI Paulo Antonio Skaf" />
+      </div>
+
+      <div class="about__content">
+        <span class="about__tag">O que é o SEMC?</span>
+        <h2 class="about__title">Sistema de escuta e melhoria continua</h2>
+        <div class="about__body">
+          <p>
+            Este portal é um projeto independente desenvolvido integralmente por um grupo da
+            Turma de Desenvolvimento de Sistemas de 2026. Nosso objetivo é criar uma plataforma
+            que permite reportar problemas e adversidades dos alunos, facilitando a comunicação
+            entre a instituição e seus alunos.
+          </p>
+          <p>
+            Mais que uma plataforma, este espaço permite a melhora constante do nosso ambiente de estudo!
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer__inner">
+
+      <div>
+        <p class="footer__brand-name">SEMC</p>
+        <p class="footer__copy">© 2026 SEMC.</p>
+      </div>
+
+      <nav class="footer__links" aria-label="Links do rodapé">
+        <a class="footer__link" href="#">Privacidade Políticas</a>
+        <a class="footer__link" href="#">Portal Institucional</a>
+        <a class="footer__link" href="#">Contatar Suporte</a>
+      </nav>
+
+    </div>
+  </footer>
+
+</body>
+
+</html>
